@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=GPS_MOSI Pin=U1-64
+Removed Pin From Net: NetName=GPS_MISO Pin=U1-65
+Removed Pin From Net: NetName=GPS_SLK Pin=U1-66
+Removed Pin From Net: NetName=GPS_C\S\ Pin=U1-67
+Removed Pin From Net: NetName=SDCARD_MOSI Pin=U1-96
+Removed Pin From Net: NetName=SDCARD_MISO Pin=U1-97
+Removed Pin From Net: NetName=SDCARD_SCLK Pin=U1-98
+Removed Pin From Net: NetName=SDCARD_CS Pin=U1-99
+Removed Pin From Net: NetName=TEMP_DQ Pin=U1-157
+Removed Pin From Net: NetName=NetRP2_8 Pin=U1-161
+Removed Pin From Net: NetName=NetRP2_7 Pin=U1-162
+Removed Pin From Net: NetName=NetRP2_6 Pin=U1-163
+Removed Pin From Net: NetName=NetRP2_5 Pin=U1-164
+Added Pin To Net: NetName=TEMP_DQ Pin=U1-38
+Added Pin To Net: NetName=SDCARD_MOSI Pin=U1-64
+Added Pin To Net: NetName=SDCARD_MISO Pin=U1-65
+Added Pin To Net: NetName=SDCARD_SCLK Pin=U1-66
+Added Pin To Net: NetName=SDCARD_CS Pin=U1-67
+Added Pin To Net: NetName=NetRP2_8 Pin=U1-90
+Added Pin To Net: NetName=NetRP2_7 Pin=U1-91
+Added Pin To Net: NetName=NetRP2_6 Pin=U1-94
+Added Pin To Net: NetName=NetRP2_5 Pin=U1-95
+Added Pin To Net: NetName=GPS_MOSI Pin=U1-96
+Added Pin To Net: NetName=GPS_MISO Pin=U1-97
+Added Pin To Net: NetName=GPS_SLK Pin=U1-98
+Added Pin To Net: NetName=GPS_C\S\ Pin=U1-99
+Added Room: Name=AD
+Added Room: Name=F28335
+Added Room: Name=GPS
+Added Room: Name=IO
+Added Room: Name=POWER
+Added Room: Name=PWM&CAN&SD
+Added Room: Name=SBUS&JTAG

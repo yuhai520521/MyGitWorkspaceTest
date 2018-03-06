@@ -1,0 +1,10 @@
+Added Component: Designator=FB14(0603-FB)
+Added Pin To Net: NetName=GND Pin=FB14-1
+Added Pin To Net: NetName=AGND Pin=FB14-2
+Added Member To Class: ClassName=F28335 Member=Component FB14 742792625
+Added Room: Name=AD
+Added Room: Name=F28335
+Added Room: Name=GPS
+Added Room: Name=IO
+Added Room: Name=POWER
+Added Room: Name=UART&SBUS&JTAG

@@ -1,0 +1,5 @@
+Added Component: Designator=D1(0402-TVS)
+Added Component: Designator=D2(0402-TVS)
+Added Member To Class: ClassName=iSensor Member=Component D1 PESD0402-140
+Added Member To Class: ClassName=iSensor Member=Component D2 PESD0402-140
+Added Room: Name=iSensor

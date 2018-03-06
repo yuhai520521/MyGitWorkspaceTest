@@ -1,0 +1,35 @@
+Removed Pin From Net: NetName=DIO1 Pin=D1-1
+Removed Pin From Net: NetName=DIN Pin=D1-3
+Removed Pin From Net: NetName=SCLK Pin=D1-5
+Removed Pin From Net: NetName=DIO3 Pin=D1-7
+Removed Pin From Net: NetName=R\S\T\ Pin=D2-2
+Removed Pin From Net: NetName=C\S\ Pin=D2-4
+Removed Pin From Net: NetName=DOUT Pin=D2-6
+Removed Pin From Net: NetName=DIO4 Pin=D2-8
+Added Component: Designator=C1(0603C)
+Added Pin To Net: NetName=DIO3 Pin=ADIS16488A-1
+Added Pin To Net: NetName=DIO4 Pin=ADIS16488A-2
+Added Pin To Net: NetName=SCLK Pin=ADIS16488A-3
+Added Pin To Net: NetName=DOUT Pin=ADIS16488A-4
+Added Pin To Net: NetName=DIN Pin=ADIS16488A-5
+Added Pin To Net: NetName=C\S\ Pin=ADIS16488A-6
+Added Pin To Net: NetName=DIO1 Pin=ADIS16488A-7
+Added Pin To Net: NetName=R\S\T\ Pin=ADIS16488A-8
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=VDD Pin=C1-2
+Added Pin To Net: NetName=DIO1 Pin=D1-2
+Added Pin To Net: NetName=DIN Pin=D1-4
+Added Pin To Net: NetName=GND Pin=D1-5
+Added Pin To Net: NetName=SCLK Pin=D1-6
+Added Pin To Net: NetName=GND Pin=D1-7
+Added Pin To Net: NetName=DIO3 Pin=D1-8
+Added Pin To Net: NetName=R\S\T\ Pin=D2-1
+Added Pin To Net: NetName=C\S\ Pin=D2-3
+Added Pin To Net: NetName=DOUT Pin=D2-5
+Added Pin To Net: NetName=GND Pin=D2-6
+Added Pin To Net: NetName=DIO4 Pin=D2-7
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=D1-3
+Added Net: Name=NetD1_1
+Added Member To Class: ClassName=iSensor Member=Component C1 0.1uF
+Added Room: Name=iSensor

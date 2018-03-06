@@ -1,0 +1,62 @@
+Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~FlyconforDSP.PrjPcb|ReportField=ProjectFullPath~D:\ASHIT\无人系统\飞控系统\FlyconforDSP\FlyconforDSP.PrjPcb|ReportField=Title~Bill of Materials For Project [FlyconforDSP.PrjPcb] (No PCB Document Selected)|ReportField=TotalQuantity~169|ReportField=ReportTime~16:36:05|ReportField=ReportDate~2018/1/20|ReportField=ReportDateTime~2018/1/20 16:36:05|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=Address1~|ReportField=Address2~|ReportField=Address3~|ReportField=Address4~|ReportField=Application_BuildNumber~|ReportField=ApprovedBy~|ReportField=Author~|ReportField=CheckedBy~|ReportField=CompanyName~|ReportField=CurrentDate~2018/1/20|ReportField=CurrentTime~16:26:09|ReportField=Date~|ReportField=DocumentFullPathAndName~D:\ASHIT\无人系统\飞控系统\FlyconforDSP\AD.SchDoc|ReportField=DocumentName~AD.SchDoc|ReportField=DocumentNumber~|ReportField=DrawnBy~|ReportField=Engineer~|ReportField=ImagePath~|ReportField=ModifiedDate~2018/1/15|ReportField=Organization~|ReportField=ProjectName~FlyconforDSP.PrjPcb|ReportField=Revision~|ReportField=Rule~|ReportField=SheetNumber~|ReportField=SheetTotal~|ReportField=Time~|ReportField=Title~|ReportField=DataSourceFileName~FlyconforDSP.PrjPcb|ReportField=DataSourceFullPath~D:\ASHIT\无人系统\飞控系统\FlyconforDSP\FlyconforDSP.PrjPcb
+BUZZER|Buzzer|B1|BEEP|BUZZER|1
+0.1uF||C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C21, C22, C27, C28, C29, C30, C31, C32, C33, C34, C35, C36, C38, C39, C40, C42, C43, C47, C48, C50, C52, C53, C55|0603C|C|43
+2.2uF||C23, C24|0603C|C|2
+24pF||C25, C26|0603C|C|2
+1nF||C37|0603C|C|1
+470uF/16V||C41|10*10/G/470uF|C-POLAR|1
+10uF||C44|0603C|C|1
+22uF/6.3V||C45|3528/B|C-POLAR|1
+10uF/6.3V||C49, C51|3528/B|C-POLAR|2
+82306050029||D1, D2|0603R|DIODE-TVS/Bidirectional|2
+742792625||FB1, FB2, FB3, FB4, FB5, FB6, FB7, FB8, FB9, FB10, FB11, FB12, FB13, FB14|0603-FB|FB|14
+HEAD3X12||J1|3X13RA|HEAD3X12|1
+POWER_5V||J2|53048-06|HEAD1X6|1
+iSensor||J3|53048-12|HEAD2X6|1
+UART||J4, J6|SIP4|HEAD1X4|2
+I2C||J5|SIP4|HEAD1X4|1
+UART||J7, J9|SIP3|HEAD1X3|2
+CAP1||J8|SIP3|HEAD1X3|1
+CAP2||J10|SIP3|HEAD1X3|1
+JTAG||J11|IDC14|IDC-14|1
+ANTINA(NC)||JP1, JP2|IPEX-20279-00E-03|ANTINA|2
+RESET_Key||K1|3*6*2.5 SMD|RESET_Key|1
+7.5nH/LQP18M||L1|0603L|L|1
+RED||LED1, LED4|0603D|LED|2
+GRREN||LED2|0603D|LED|1
+BLUE||LED3, LED5|0603D|LED|2
+0ZCH0150FF2E||PTC1|1210|PTC|1
+8550|PNP Transistor|Q1|SOT23-PNP|PNP|1
+24.9K/1%||R1|0603R|R|1
+1K||R2, R3, R4, R6, R39|0603R|R|5
+10K||R5, R7, R8, R9, R11, R12, R16, R20, R22, R23, R32, R35, R36, R37, R38|0603R|R|15
+120||R10|0603R|R|1
+0||R15, R19, R21|0603R|R|3
+18.2K/1%||R17|0603R|R|1
+30.1K/1%||R18|0603R|R|1
+2K/0.1%||R24|0603R|R|1
+1K/0.1%||R25, R29|0603R|R|2
+10K/0.1%||R26, R27, R28, R31|0603R|R|4
+667/0.1%||R30|0603R|R|1
+220||R33, R34|0603R|R|2
+YC164/220||RP1, RP2|YC164|RP-4|2
+YC248/120||RP3|YC248|RP|1
+YC248/220||RP4|YC248|RP|1
+SW_POWER||SW1|SIP2|SW_POWER|1
+PAD||TP1, TP2, TP3, TP4, TP5, TP6, TP7, TP8, TP9|test|PAD|9
+TMS320F28335||U1|LQFP-176|TMS320F28335|1
+DS18B20||U2|TO-92|DS18B20|1
+74HC245||U3, U4|SSOP20|74HC245|2
+NLSX4373||U5, U6|SO8|NLSX4373|2
+MICROSD_SPI||U7|microsd|MICROSD_SPI|1
+MC33901||U8|SOIC-8|MC33901|1
+BGA725L6||U9|BGA725L6|BGA725L6|1
+ubox-M8N||U10|ublox-M8|ubox-M8N|1
+AMS1117-3.3V|5V-3.3V|U11|SOT223|AS1117M3-3.3V|1
+TPS767D301||U13|TPS767D301|TPS767D301|1
+IMP811||U14|IMP811|IMP811|1
+74HC08D|2-INPUT AND GATE|U15|SO14|74HC08D|1
+MPXV7002DP||U16|MPXV7002DP|MPXV7002DP|1
+74LVC2G240||U17|VSSOP-8|74LVC2G240|1
+82536040||VDR1, VDR2, VDR3, VDR4, VDR5, VDR6, VDR7, VDR8, VDR9|0603R|Varistor|9
+30M||Y1||Crystal-4|1
