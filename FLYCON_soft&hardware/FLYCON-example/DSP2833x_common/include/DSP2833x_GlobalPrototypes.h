@@ -193,6 +193,7 @@ extern Uint16 RamfuncsRunStart;
 extern Uint16 XintffuncsLoadStart;
 extern Uint16 XintffuncsLoadEnd;
 extern Uint16 XintffuncsRunStart;
+extern DS18B20_ReadTemp();
 
 
 #ifdef __cplusplus

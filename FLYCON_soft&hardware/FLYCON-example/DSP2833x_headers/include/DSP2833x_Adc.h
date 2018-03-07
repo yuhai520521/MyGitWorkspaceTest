@@ -250,7 +250,11 @@ struct ADC_RESULT_MIRROR_REGS
 //
 extern volatile struct ADC_REGS AdcRegs;
 extern volatile struct ADC_RESULT_MIRROR_REGS AdcMirror;
-
+void Adc_start(void);
+void Ad_Onechanneltime_Init(void);
+Uint16  Ad_Get(Uint16 n);
+void Ad_Contrun_Init(void);
+void Ad_Contrun_Get(Uint16 *value);
 
 #ifdef __cplusplus
 }

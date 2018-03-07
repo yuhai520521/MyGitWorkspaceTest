@@ -4,9 +4,7 @@
 #include "DSP2833x_Examples.h"   // DSP2833x Examples Include File
 #include <math.h>
 
-#define ADC_MODCLK 0x3 // HSPCLK = SYSCLKOUT/2*ADC_MODCLK2 = 150/(2*3) = 25.0 MHz 1.//对系统时钟进行分频获得HSPCLK（高速外设时钟信号） 默认未分频时HSPCLK=SYSCLK/2；
-
-extern DS18B20_ReadTemp();
+//#define ADC_MODCLK 0x3 // HSPCLK = SYSCLKOUT/2*ADC_MODCLK2 = 150/(2*3) = 25.0 MHz 1.//对系统时钟进行分频获得HSPCLK（高速外设时钟信号） 默认未分频时HSPCLK=SYSCLK/2；
 
 void main(void)
 {
@@ -15,9 +13,9 @@ void main(void)
 
    InitSysCtrl();
   // ADC工作时钟设置
-   EALLOW;
-   SysCtrlRegs.HISPCP.all = ADC_MODCLK;
-   EDIS;
+//   EALLOW;
+//   SysCtrlRegs.HISPCP.all = ADC_MODCLK;
+//   EDIS;
 
 
 // Step 2. Initialize GPIO:
@@ -70,8 +68,9 @@ void main(void)
    scia_init();
    scib_init();
    scic_init();
-   InitAdc();
-
+//   InitAdc();
+   Ad_Onechanneltime_Init();
+   Ad_Contrun_Init();
 //   ADIS16488_init();
 //   ADIS16405_init();
 
@@ -80,8 +79,9 @@ void main(void)
    Uint16  PROD_ID = 0;
    Uint16  SBUS_DATA = 0;
    uchar  q;
+   Uint16 ad[16]={0};
    GpioDataRegs.GPCCLEAR.bit.GPIO75 = 1;
-
+   float BATT6S_VOLT,BATT_CURRENT,BATT2S_VOLT,SKY_SPEED;
    while(1)
    	   {
 //	   	   CheckSUM();
@@ -102,8 +102,10 @@ void main(void)
 //		   GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉高
 //		   DELAY_US(2000);
 //		   scia_xmit16(PROD_ID);
-
-		   ADIS16405_data_conversion();
+	   	   BATT6S_VOLT = Ad_Get(0);
+	   	   BATT_CURRENT = Ad_Get(1);
+	   	   Ad_Contrun_Get(ad);
+//		   ADIS16405_data_conversion();
 //		   DELAY_US(1000);
 ////	   	   data_conversion();
 
