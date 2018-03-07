@@ -84,7 +84,16 @@
 
 void ADIS16488_init(void)
 {
+		GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉低
+		DELAY_US(1000);
+		GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
+		DELAY_US(1000);
 	   Uint16 PROD_ID = 0;
+	   Mcbspb_SPI_TX(0x8003);             // 转到第3页
+	   Mcbspb_SPI_TX(0x8280);             // 软件复位配置
+	   Mcbspb_SPI_TX(0x8300);
+	   DELAY_US(500000);
+	   Mcbspb_SPI_TX(0x8000);            // 转到第0页 读取数据
 	   if(PROD_ID != 0x4068)
 			   {
 		   	   	   while(PROD_ID != 0x4068)
@@ -92,7 +101,6 @@ void ADIS16488_init(void)
 					   GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
 					   DELAY_US(1000);
 					   Mcbspb_SPI_TX(0x7E00);
-					   DELAY_US(1000);
 					   PROD_ID = Mcbspb_SPI_RX();
 					   GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉高
 					   DELAY_US(1000);
@@ -100,10 +108,10 @@ void ADIS16488_init(void)
 			   }
 	   GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
 	   DELAY_US(1000);
-	   Mcbspb_SPI_TX(0x8003);             // 转到第3页
-	   Mcbspb_SPI_TX(0x8280);             // 软件复位配置
-	   Mcbspb_SPI_TX(0x8300);
-	   Mcbspb_SPI_TX(0x8000);            // 转到第0页 读取数据
+//	   Mcbspb_SPI_TX(0x8003);             // 转到第3页
+//	   Mcbspb_SPI_TX(0x8280);             // 软件复位配置
+//	   Mcbspb_SPI_TX(0x8300);
+//	   Mcbspb_SPI_TX(0x8000);            // 转到第0页 读取数据
 
 }
 

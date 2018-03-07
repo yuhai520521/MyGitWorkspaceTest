@@ -15,7 +15,8 @@
 #include "DSP2833x_Examples.h"   // DSP2833x Examples Include File
 
 #define ADC_usDELAY  5000L
-
+#define ADC_CKPS 0x3      // ADC module clock = HSPCLK/2*ADC_CKPS = 25.0MHz/(1*2) = 12.5MHz 2.//对HSPCLK进行分频获得ADC模块时钟频率；
+#define ADC_SHCLK 0xf     // S/H width in ADC module periods = 16 ADC clocks 3.//设置采样时间窗大小；
 //---------------------------------------------------------------------------
 // InitAdc:
 //---------------------------------------------------------------------------
@@ -40,8 +41,10 @@ void InitAdc(void)
 		SysCtrlRegs.PCLKCR0.bit.ADCENCLK = 1;
 		ADC_cal();
 		EDIS;
-
-
+		AdcRegs.ADCREFSEL.bit.REF_SEL = 0;  //选择内部参考源（默认）
+//		AdcRegs.ADCREFSEL.bit.REF_SEL = 1;  //选择外部参考源（2.048v）
+//		AdcRegs.ADCREFSEL.bit.REF_SEL = 2;  //选择外部参考源（1.500v）
+//		AdcRegs.ADCREFSEL.bit.REF_SEL = 3;  //选择外部参考源（1.024v）
 
 
     // To powerup the ADC the ADCENCLK bit should be set first to enable
@@ -55,6 +58,30 @@ void InitAdc(void)
 
     AdcRegs.ADCTRL3.all = 0x00E0;  // Power up bandgap/reference/ADC circuits
     DELAY_US(ADC_usDELAY);         // Delay before converting ADC channels
+    // ADC工作方式设置
+    AdcRegs.ADCTRL1.bit.ACQ_PS = ADC_SHCLK;   //设置采样时间窗大小，此处ACQ_PS十进制15，采样时间窗大小=ADCLOCK*（15+1）
+    AdcRegs.ADCTRL3.bit.ADCCLKPS = ADC_CKPS;  //内核时钟分频，将HSPCLK进行分频获得ADC模块时钟频率
+    AdcRegs.ADCTRL1.bit.SEQ_CASC = 1;         // 1通道模式
+    AdcRegs.ADCTRL1.bit.CONT_RUN = 1;         // 采用连续转换模式
+    AdcRegs.ADCTRL1.bit.SEQ_OVRD = 1;         // 使能排序覆盖
+    AdcRegs.ADCCHSELSEQ1.bit.CONV00 = 0;             // A0为采样通道
+    AdcRegs.ADCCHSELSEQ1.bit.CONV01 = 1;             // A1为采样通道
+    AdcRegs.ADCCHSELSEQ1.bit.CONV02 = 2;             // A2为采样通道
+    AdcRegs.ADCCHSELSEQ1.bit.CONV03 = 3;             // A3为采样通道
+
+
+    AdcRegs.ADCMAXCONV.bit.MAX_CONV1 = 0X3;          // 最大采集通道数，因为用到A0\0A1\A2\A3四个通道，所以其值为3
+}
+
+void Adc_start(void)
+{
+	Uint16 array_index = 0;
+	Uint16 SampleTable[10] = 0;
+
+	while(AdcRegs.ADCST.bit.INT_SEQ1 == 0){}   // 查询转换是否结束
+	AdcRegs.ADCST.bit.INT_SEQ2_CLR = 1;        // 清除中断标志位
+	SampleTable[array_index++] = ((AdcRegs.ADCRESULT0)>>4);
+
 }
 
 //===========================================================================

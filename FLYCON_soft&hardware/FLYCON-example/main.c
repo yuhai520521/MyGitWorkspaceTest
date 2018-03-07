@@ -4,6 +4,8 @@
 #include "DSP2833x_Examples.h"   // DSP2833x Examples Include File
 #include <math.h>
 
+#define ADC_MODCLK 0x3 // HSPCLK = SYSCLKOUT/2*ADC_MODCLK2 = 150/(2*3) = 25.0 MHz 1.//对系统时钟进行分频获得HSPCLK（高速外设时钟信号） 默认未分频时HSPCLK=SYSCLK/2；
+
 extern DS18B20_ReadTemp();
 
 void main(void)
@@ -12,6 +14,11 @@ void main(void)
 // Step 1. Initialize System Control:
 
    InitSysCtrl();
+  // ADC工作时钟设置
+   EALLOW;
+   SysCtrlRegs.HISPCP.all = ADC_MODCLK;
+   EDIS;
+
 
 // Step 2. Initialize GPIO:
 
@@ -63,9 +70,10 @@ void main(void)
    scia_init();
    scib_init();
    scic_init();
+   InitAdc();
 
-   ADIS16488_init();
-   ADIS16405_init();
+//   ADIS16488_init();
+//   ADIS16405_init();
 
    SetSPIPORT();
 
@@ -88,7 +96,7 @@ void main(void)
 
 //	   	   GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
 //	   	   DELAY_US(1000);
-////		   Mcbspb_SPI_TX(0x0200);
+////	   Mcbspb_SPI_TX(0x0200);
 //		   DELAY_US(2000);
 //		   PROD_ID = Mcbspb_SPI_RX();
 //		   GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉高
