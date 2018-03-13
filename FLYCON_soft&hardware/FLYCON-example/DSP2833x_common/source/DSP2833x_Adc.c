@@ -26,27 +26,18 @@
 void InitAdc(void)
 {
     extern void DSP28x_usDelay(Uint32 Count);
-    // *IMPORTANT*
-	// The ADC_cal function, which  copies the ADC calibration values from TI reserved
-	// OTP into the ADCREFSEL and ADCOFFTRIM registers, occurs automatically in the
-	// Boot ROM. If the boot ROM code is bypassed during the debug process, the
-	// following function MUST be called for the ADC to function according
-	// to specification. The clocks to the ADC MUST be enabled before calling this
-	// function.
-	// See the device data manual and/or the ADC Reference
-	// Manual for more information.
 
-	    EALLOW;
-		SysCtrlRegs.PCLKCR0.bit.ADCENCLK = 1;
-		ADC_cal();
-		EDIS;
-		AdcRegs.ADCREFSEL.bit.REF_SEL = 0;  //选择内部参考源（默认）
-//		AdcRegs.ADCREFSEL.bit.REF_SEL = 1;  //选择外部参考源（2.048v）
-//		AdcRegs.ADCREFSEL.bit.REF_SEL = 2;  //选择外部参考源（1.500v）
-//		AdcRegs.ADCREFSEL.bit.REF_SEL = 3;  //选择外部参考源（1.024v）
+    EALLOW;
+	SysCtrlRegs.PCLKCR0.bit.ADCENCLK = 1;
+	ADC_cal();
+	EDIS;
 
-		AdcRegs.ADCTRL3.all = 0x00E0;  // Power up bandgap/reference/ADC circuits
-		DELAY_US(ADC_usDELAY);         // Delay before converting ADC channels
+	AdcRegs.ADCREFSEL.bit.REF_SEL = 0;  //选择内部参考源（默认）
+//	AdcRegs.ADCREFSEL.bit.REF_SEL = 1;  //选择外部参考源（2.048v）
+//	AdcRegs.ADCREFSEL.bit.REF_SEL = 2;  //选择外部参考源（1.500v）
+//	AdcRegs.ADCREFSEL.bit.REF_SEL = 3;  //选择外部参考源（1.024v）
+	AdcRegs.ADCTRL3.all = 0x00E0;  // Power up bandgap/reference/ADC circuits
+	DELAY_US(ADC_usDELAY);         // Delay before converting ADC channels
 }
 
 //---------------------------------------------------------------------------
@@ -131,7 +122,7 @@ Uint16  Ad_Get(Uint16 n)
 }
 
 //---------------------------------------------------------------------------
-// 单次转换模式
+// 连续转换模式
 //---------------------------------------------------------------------------
 
 void Ad_Contrun_Init(void)
@@ -145,14 +136,14 @@ void Ad_Contrun_Init(void)
 					 // If Simultaneous mode enabled: Sample rate = 1/[(3+ACQ_PS)*ADC //clock in ns]
 	AdcRegs.ADCTRL3.bit.ADCCLKPS = ADC_CKPS;
 	AdcRegs.ADCTRL1.bit.SEQ_CASC = 1;         // 1  级联模式
-	AdcRegs.ADCTRL2.bit.INT_ENA_SEQ1 = 0x1; //允许向CPU发出中断请求
+	AdcRegs.ADCTRL2.bit.INT_ENA_SEQ1 = 0x1;   // 允许向CPU发出中断请求
 	AdcRegs.ADCTRL2.bit.RST_SEQ1 = 0x1;
 	AdcRegs.ADCTRL1.bit.CONT_RUN = 1;         // 连续模式
-	AdcRegs.ADCTRL3.bit.SMODE_SEL= 0;         // 顺序采样
+	AdcRegs.ADCTRL3.bit.SMODE_SEL= 0;          // 顺序采样
 	AdcRegs.ADCTRL1.bit.SEQ_OVRD = 1;         // Enable Sequencer override feature
 	AdcRegs.ADCMAXCONV.bit.MAX_CONV1 = 0xF;   // 要转换的通道数
-	AdcRegs.ADCCHSELSEQ1.all = 0x3210;      // Initialize all ADC channel
-	AdcRegs.ADCCHSELSEQ2.all = 0x7654;      //每个通道对应相应的结果寄存器
+	AdcRegs.ADCCHSELSEQ1.all = 0x3210;        // Initialize all ADC channel
+	AdcRegs.ADCCHSELSEQ2.all = 0x7654;        // 每个通道对应相应的结果寄存器
 	AdcRegs.ADCCHSELSEQ3.all = 0xBA98;
 	AdcRegs.ADCCHSELSEQ4.all = 0xFEDC;
 

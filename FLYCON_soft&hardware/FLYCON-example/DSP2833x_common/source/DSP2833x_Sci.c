@@ -137,6 +137,7 @@ void scia_xmit(Uint16 a)           // 发送8位长度数据
 	while (SciaRegs.SCICTL2.bit.TXRDY == 0);
     SciaRegs.SCITXBUF=a;
 }
+
 void scia_xmit16(Uint16 a)         // 发送16位长度数据
 {
 	while (SciaRegs.SCICTL2.bit.TXRDY == 0);

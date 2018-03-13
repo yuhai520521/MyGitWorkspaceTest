@@ -138,7 +138,9 @@ extern volatile struct ECAP_REGS ECap3Regs;
 extern volatile struct ECAP_REGS ECap4Regs;
 extern volatile struct ECAP_REGS ECap5Regs;
 extern volatile struct ECAP_REGS ECap6Regs;
-
+void InitECAP();
+void SetCap5();
+void SetCap6();
 
 #ifdef __cplusplus
 }

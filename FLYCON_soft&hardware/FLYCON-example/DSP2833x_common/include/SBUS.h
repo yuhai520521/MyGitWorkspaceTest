@@ -25,7 +25,11 @@ void scib_init();
 void scib_xmit(Uint16 a);
 Uint16 scib_rx(void);
 void scib_fifo_init();
-
+void update_servos(void);
+void update_channels(void);
+void feedLine();
+void loop();
+void Process(void);
 
 #ifdef __cplusplus
 }

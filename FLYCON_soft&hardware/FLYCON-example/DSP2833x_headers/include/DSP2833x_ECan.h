@@ -1149,6 +1149,9 @@ extern volatile struct ECAN_MBOXES ECanbMboxes;
 extern volatile struct LAM_REGS ECanbLAMRegs;
 extern volatile struct MOTO_REGS ECanbMOTORegs;
 extern volatile struct MOTS_REGS ECanbMOTSRegs;
+void InitCan(void);
+void mailbox_check(int32 T1, int32 T2, int32 T3);
+void mailbox_read(int16 i);
 
 #ifdef __cplusplus
 }

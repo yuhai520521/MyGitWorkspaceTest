@@ -128,10 +128,10 @@ typedef unsigned char   uchar;
 #define DSP28_EPWM4  1
 #define DSP28_EPWM5  1
 #define DSP28_EPWM6  1
-#define DSP28_ECAP1  1
-#define DSP28_ECAP2  1
-#define DSP28_ECAP3  1
-#define DSP28_ECAP4  1
+#define DSP28_ECAP1  0
+#define DSP28_ECAP2  0
+#define DSP28_ECAP3  0
+#define DSP28_ECAP4  0
 #define DSP28_ECAP5  1
 #define DSP28_ECAP6  1
 #define DSP28_EQEP1  1

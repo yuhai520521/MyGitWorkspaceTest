@@ -303,7 +303,7 @@ void EPwm3Setup()
 	EPwm3Regs.TBCTR=0;
 
 	EPwm3Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
-	EPwm3Regs.CMPA.half.CMPA =SQ/20;
+	EPwm3Regs.CMPA.half.CMPA = SQ/20;
 	EPwm3Regs.CMPB=0;
 
 	EPwm3Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
@@ -336,7 +336,6 @@ void EPwm3Setup()
 	EPwm3Regs.TBCTL.bit.CLKDIV=6;
 	EPwm3Regs.TBPRD=SQ;
 
-//	EPwm3Regs.TBPRD=SQ;
 
 }
 

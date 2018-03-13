@@ -4,8 +4,9 @@
 #include "DSP2833x_Examples.h"   // DSP2833x Examples Include File
 #include <math.h>
 
-//#define ADC_MODCLK 0x3 // HSPCLK = SYSCLKOUT/2*ADC_MODCLK2 = 150/(2*3) = 25.0 MHz 1.//对系统时钟进行分频获得HSPCLK（高速外设时钟信号） 默认未分频时HSPCLK=SYSCLK/2；
-
+#define ADC_MODCLK 0x3 // HSPCLK = SYSCLKOUT/2*ADC_MODCLK2 = 150/(2*3) = 25.0 MHz 1.//对系统时钟进行分频获得HSPCLK（高速外设时钟信号） 默认未分频时HSPCLK=SYSCLK/2；
+__interrupt void ECap5_INT_ISR(void);
+__interrupt void ECap6_INT_ISR(void);
 void main(void)
 {
 
@@ -13,9 +14,9 @@ void main(void)
 
    InitSysCtrl();
   // ADC工作时钟设置
-//   EALLOW;
-//   SysCtrlRegs.HISPCP.all = ADC_MODCLK;
-//   EDIS;
+   EALLOW;
+   SysCtrlRegs.HISPCP.all = ADC_MODCLK;
+   EDIS;
 
 
 // Step 2. Initialize GPIO:
@@ -32,6 +33,10 @@ void main(void)
    InitSciGpio();
 
    InitEPwmGpio();
+
+   InitECanbGpio();
+
+   InitECapGpio();
 
 // Step 3. Clear all interrupts and initialize PIE vector table:
 // Disable CPU interrupts
@@ -59,7 +64,9 @@ void main(void)
 // This function is found in DSP2833x_InitPeripherals.c
 
 //   InitEPwmTimer();
+
    EPwmSetup();
+   InitECAP();
 
    init_mcbsp_spi();
 
@@ -68,13 +75,16 @@ void main(void)
    scia_init();
    scib_init();
    scic_init();
+//   InitECanb();
 //   InitAdc();
-   Ad_Onechanneltime_Init();
-   Ad_Contrun_Init();
+//   Ad_Onechanneltime_Init();
+//   Ad_Contrun_Init();
 //   ADIS16488_init();
 //   ADIS16405_init();
 
    SetSPIPORT();
+
+//   InitCan();
 
    Uint16  PROD_ID = 0;
    Uint16  SBUS_DATA = 0;
@@ -82,6 +92,7 @@ void main(void)
    Uint16 ad[16]={0};
    GpioDataRegs.GPCCLEAR.bit.GPIO75 = 1;
    float BATT6S_VOLT,BATT_CURRENT,BATT2S_VOLT,SKY_SPEED;
+
    while(1)
    	   {
 //	   	   CheckSUM();
@@ -93,7 +104,9 @@ void main(void)
 //	       PROD_ID =  scic_rx();
 //	       PROD_ID = temout();
 //	       SBUS_DATA = scib_rx();
+//	       scia_xmit(SBUS_DATA);
 
+	   	   loop();
 //	   	   GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
 //	   	   DELAY_US(1000);
 ////	   Mcbspb_SPI_TX(0x0200);
@@ -102,9 +115,9 @@ void main(void)
 //		   GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉高
 //		   DELAY_US(2000);
 //		   scia_xmit16(PROD_ID);
-	   	   BATT6S_VOLT = Ad_Get(0);
-	   	   BATT_CURRENT = Ad_Get(1);
-	   	   Ad_Contrun_Get(ad);
+//	   	   BATT6S_VOLT = Ad_Get(0);
+//	   	   BATT_CURRENT = Ad_Get(1);
+//	   	   Ad_Contrun_Get(ad);
 //		   ADIS16405_data_conversion();
 //		   DELAY_US(1000);
 ////	   	   data_conversion();
