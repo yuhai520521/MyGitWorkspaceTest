@@ -77,7 +77,7 @@ AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=4
+AnnotateOrder=7
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -122,13 +122,13 @@ GenerateClassCluster=0
 DocumentUniqueId=YQAIILXS
 
 [Document6]
-DocumentPath=SBUS&JTAG.SchDoc
+DocumentPath=SBUS.SchDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
 AnnotateSuffix=
 AnnotateScope=All
-AnnotateOrder=7
+AnnotateOrder=4
 DoLibraryUpdate=1
 DoDatabaseUpdate=1
 ClassGenCCAutoEnabled=1
@@ -173,7 +173,7 @@ GenerateClassCluster=0
 DocumentUniqueId=AHQQYRSD
 
 [Document9]
-DocumentPath=研发中心PCB库文件.PcbLib
+DocumentPath=..\..\PCBLib\研发中心PCB库文件.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -190,7 +190,7 @@ GenerateClassCluster=0
 DocumentUniqueId=ABLYNBKJ
 
 [Document10]
-DocumentPath=研发中心原理图库文件.SchLib
+DocumentPath=..\..\PCBLib\研发中心原理图库文件.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -206,92 +206,25 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=ESFBEYNQ
 
+[Document11]
+DocumentPath=PCB2.0.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=IMLSTKEK
+
 [GeneratedDocument1]
-DocumentPath=Project Outputs for FlyconforDSP\PCB-Plated.TXT
-DItemRevisionGUID=
-
-[GeneratedDocument2]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.DRR
-DItemRevisionGUID=
-
-[GeneratedDocument3]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.EXTREP
-DItemRevisionGUID=
-
-[GeneratedDocument4]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GBL
-DItemRevisionGUID=
-
-[GeneratedDocument5]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GBO
-DItemRevisionGUID=
-
-[GeneratedDocument6]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GBP
-DItemRevisionGUID=
-
-[GeneratedDocument7]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GBS
-DItemRevisionGUID=
-
-[GeneratedDocument8]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GD1
-DItemRevisionGUID=
-
-[GeneratedDocument9]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GKO
-DItemRevisionGUID=
-
-[GeneratedDocument10]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GM1
-DItemRevisionGUID=
-
-[GeneratedDocument11]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GM13
-DItemRevisionGUID=
-
-[GeneratedDocument12]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GM15
-DItemRevisionGUID=
-
-[GeneratedDocument13]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GM16
-DItemRevisionGUID=
-
-[GeneratedDocument14]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GPB
-DItemRevisionGUID=
-
-[GeneratedDocument15]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GPT
-DItemRevisionGUID=
-
-[GeneratedDocument16]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GTL
-DItemRevisionGUID=
-
-[GeneratedDocument17]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GTO
-DItemRevisionGUID=
-
-[GeneratedDocument18]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GTP
-DItemRevisionGUID=
-
-[GeneratedDocument19]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.GTS
-DItemRevisionGUID=
-
-[GeneratedDocument20]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.LDP
-DItemRevisionGUID=
-
-[GeneratedDocument21]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.REP
-DItemRevisionGUID=
-
-[GeneratedDocument22]
-DocumentPath=Project Outputs for FlyconforDSP\PCB.RUL
+DocumentPath=Project Outputs for FlyconforDSP\Design Rule Check - PCB2.html
 DItemRevisionGUID=
 
 [Configuration1]
@@ -324,42 +257,12 @@ OutputName3=VHDL File
 OutputDocumentPath3=
 OutputVariantName3=
 OutputDefault3=0
-OutputType4=SIMetrixNetlist
-OutputName4=SIMetrix
-OutputDocumentPath4=
-OutputVariantName4=
-OutputDefault4=0
-OutputType5=SIMPLISNetlist
-OutputName5=SIMPLIS
-OutputDocumentPath5=
-OutputVariantName5=
-OutputDefault5=0
-OutputType6=XSpiceNetlist
-OutputName6=XSpice Netlist
-OutputDocumentPath6=
-OutputVariantName6=
-OutputDefault6=0
 
 [OutputGroup2]
 Name=Simulator Outputs
 Description=
-TargetPrinter=HP LaserJet Professional M1218nfs MFP
+TargetPrinter=Send To OneNote 2016
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintWhat=1
-OutputType1=AdvSimNetlist
-OutputName1=Mixed Sim
-OutputDocumentPath1=
-OutputVariantName1=
-OutputDefault1=0
-OutputType2=SIMetrixSimulation
-OutputName2=SIMetrix
-OutputDocumentPath2=
-OutputVariantName2=
-OutputDefault2=0
-OutputType3=SIMPLISSimulation
-OutputName3=SIMPLIS
-OutputDocumentPath3=
-OutputVariantName3=
-OutputDefault3=0
 
 [OutputGroup3]
 Name=Documentation Outputs
@@ -494,7 +397,7 @@ OutputDefault3=0
 [OutputGroup5]
 Name=Fabrication Outputs
 Description=
-TargetPrinter=HP LaserJet Professional M1218nfs MFP
+TargetPrinter=Send To OneNote 2016
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintWhat=1
 OutputType1=NC Drill
 OutputName1=NC Drill Files
@@ -560,7 +463,7 @@ Configuration10_Item1=AddToAllLayerClasses.Set= |AddToAllPlots.Set=SerializeLaye
 [OutputGroup6]
 Name=Report Outputs
 Description=
-TargetPrinter=HP LaserJet Professional M1218nfs MFP
+TargetPrinter=Send To OneNote 2016
 PrinterOptions=Record=PrinterOptions|Copies=1|Duplex=1|TrueTypeOptions=3|Collate=1|PrintWhat=1
 OutputType1=Script
 OutputName1=Script Output

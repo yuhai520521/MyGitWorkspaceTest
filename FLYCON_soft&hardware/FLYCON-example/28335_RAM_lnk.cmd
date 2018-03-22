@@ -85,8 +85,8 @@ PAGE 0 :
 
    BEGIN      : origin = 0x000000, length = 0x000002     /* Boot to M0 will go here                      */
    RAMM0      : origin = 0x000050, length = 0x0003B0
-   RAML0      : origin = 0x008000, length = 0x000C00
-   RAML1      : origin = 0x008C00, length = 0x001400
+   RAML0      : origin = 0x008000, length = 0x000800
+   RAML1      : origin = 0x008800, length = 0x001800
    RAML2      : origin = 0x00A000, length = 0x001000
    RAML3      : origin = 0x00B000, length = 0x001000
    ZONE7A     : origin = 0x200000, length = 0x00FC00    /* XINTF zone 7 - program space */
@@ -114,7 +114,7 @@ PAGE 1 :
    ZONE7B     : origin = 0x20FC00, length = 0x000400     /* XINTF zone 7 - data space */
 }
 
-
+// .text            : > RAML1,     PAGE = 0
 SECTIONS
 {
    /* Setup for "boot to SARAM" mode:

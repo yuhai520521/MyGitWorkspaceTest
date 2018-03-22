@@ -1,0 +1,15 @@
+Added Component: Designator=C43(3216/A)
+Added Component: Designator=C44(3216/A)
+Added Pin To Net: NetName=VDD3V3 Pin=C43-1
+Added Pin To Net: NetName=GND Pin=C43-2
+Added Pin To Net: NetName=VDD1V9 Pin=C44-1
+Added Pin To Net: NetName=GND Pin=C44-2
+Added Pin To Net: NetName=GND Pin=J1-40
+Added Member To Class: ClassName=POWER Member=Component C43 10uF/6.3V
+Added Member To Class: ClassName=POWER Member=Component C44 10uF/6.3V
+Added Room: Name=AD
+Added Room: Name=F28335
+Added Room: Name=GPS
+Added Room: Name=IO
+Added Room: Name=POWER
+Added Room: Name=PWM&CAN&SD

@@ -80,7 +80,7 @@ void main(void)
 //   Ad_Onechanneltime_Init();
 //   Ad_Contrun_Init();
 //   ADIS16488_init();
-//   ADIS16405_init();
+   ADIS16405_init();
 
    SetSPIPORT();
 
@@ -106,7 +106,7 @@ void main(void)
 //	       SBUS_DATA = scib_rx();
 //	       scia_xmit(SBUS_DATA);
 
-	   	   loop();
+//	   	   loop();
 //	   	   GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CSÀ­µÍ
 //	   	   DELAY_US(1000);
 ////	   Mcbspb_SPI_TX(0x0200);
@@ -118,7 +118,7 @@ void main(void)
 //	   	   BATT6S_VOLT = Ad_Get(0);
 //	   	   BATT_CURRENT = Ad_Get(1);
 //	   	   Ad_Contrun_Get(ad);
-//		   ADIS16405_data_conversion();
+		   ADIS16405_data_conversion();
 //		   DELAY_US(1000);
 ////	   	   data_conversion();
 

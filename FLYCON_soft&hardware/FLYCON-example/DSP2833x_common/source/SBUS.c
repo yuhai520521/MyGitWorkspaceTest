@@ -129,8 +129,8 @@ void loop()
   feedLine();
   if(toChannels==1)
   {
-    update_channels();
-    toChannels=0;
+	  update_channels();
+	  toChannels=0;
   }
 
 }
@@ -138,12 +138,12 @@ void loop()
 
 void update_channels(void)
 {
-  Uint16 x,i;
+  Uint16 x,i,t;
 
   // clear channels[]
   for (i=0; i<16; i++)
   {
-    channels[i] = 0;
+	  channels[i] = 0;
   }
 
   // reset counters
@@ -157,20 +157,20 @@ void update_channels(void)
   {
     if (sbus_data[byte_in_sbus] & (1<<bit_in_sbus))
     {
-      channels[ch] |= (1<<bit_in_channel);
+    	channels[ch] |= (1<<bit_in_channel);
     }
     bit_in_sbus++;
     bit_in_channel++;
 
     if (bit_in_sbus == 8)
     {
-      bit_in_sbus =0;
-      byte_in_sbus++;
+    	bit_in_sbus =0;
+        byte_in_sbus++;
     }
     if (bit_in_channel == 11)
     {
-      bit_in_channel =0;
-      ch++;
+    	bit_in_channel =0;
+    	ch++;
     }
   }
   if((channels[0]>0)&&(channels[0]<2048))
@@ -182,39 +182,39 @@ void update_channels(void)
   {
 	  x = 2000;
   }
-
-  EPwm3Regs.CMPA.half.CMPA = x*3/5;
-
-
+  t = x*3/5;
+  EPwm3Regs.CMPA.half.CMPA = t;
+  EPwm4Regs.CMPA.half.CMPA = t;
+  scia_xmit16(x);
   // sbus_data[23]是flags字节
 
   // DigiChannel 1
   if (sbus_data[23] & (1<<0))
   {
-    channels[16] = 1;
+	  channels[16] = 1;
   }
   else
   {
-    channels[16] = 0;
+	  channels[16] = 0;
   }
   // DigiChannel 2
   if (sbus_data[23] & (1<<1))
   {
-    channels[17] = 1;
+	  channels[17] = 1;
   }
   else
   {
-    channels[17] = 0;
+	  channels[17] = 0;
   }
   // Failsafe
   failsafe_status = SBUS_SIGNAL_OK;
   if (sbus_data[23] & (1<<2))
   {
-    failsafe_status = SBUS_SIGNAL_LOST;
+	  failsafe_status = SBUS_SIGNAL_LOST;
   }
   if (sbus_data[23] & (1<<3))
   {
-    failsafe_status = SBUS_SIGNAL_FAILSAFE;
+	  failsafe_status = SBUS_SIGNAL_FAILSAFE;
   }
 
 }
@@ -222,24 +222,25 @@ void feedLine()
 {
   while(1)
   {
-    inData = scib_rx();
+	  inData = scib_rx();
+
     if (inData == 0x0f)
 	{
-      bufferIndex = 0;
-      inBuffer[bufferIndex] = inData;
+    	bufferIndex = 0;
+    	inBuffer[bufferIndex] = inData;
 //      inBuffer[24] = 0xff;
     }
     else
 	{
-      bufferIndex ++;
-      inBuffer[bufferIndex] = inData;
+    	bufferIndex ++;
+    	inBuffer[bufferIndex] = inData;
     }
     if(inBuffer[0]==0x0f && inBuffer[24] == 0x00)
 	{
 
-      memcpy(sbus_data,inBuffer,25);
-      toChannels = 1;
-      return;
+    	memcpy(sbus_data,inBuffer,25);
+		toChannels = 1;
+		return;
     }
     break;       // if语句成立则跳出while循环
   }

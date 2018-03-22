@@ -1,0 +1,50 @@
+Added Component: Designator=J1(FPC0.5-42)
+Added Pin To Net: NetName=PWM1 Pin=J1-1
+Added Pin To Net: NetName=PWM2 Pin=J1-2
+Added Pin To Net: NetName=PWM3 Pin=J1-3
+Added Pin To Net: NetName=PWM4 Pin=J1-4
+Added Pin To Net: NetName=PWM5 Pin=J1-5
+Added Pin To Net: NetName=PWM6 Pin=J1-6
+Added Pin To Net: NetName=PWM7 Pin=J1-7
+Added Pin To Net: NetName=PWM8 Pin=J1-8
+Added Pin To Net: NetName=PWM9 Pin=J1-9
+Added Pin To Net: NetName=PWM10 Pin=J1-10
+Added Pin To Net: NetName=PWM11 Pin=J1-11
+Added Pin To Net: NetName=PWM12 Pin=J1-12
+Added Pin To Net: NetName=SBUS_TX Pin=J1-13
+Added Pin To Net: NetName=SBUS_RX Pin=J1-14
+Added Pin To Net: NetName=SCITXA Pin=J1-15
+Added Pin To Net: NetName=SCIRXA Pin=J1-16
+Added Pin To Net: NetName=SCITXC Pin=J1-17
+Added Pin To Net: NetName=SCIRXC Pin=J1-18
+Added Pin To Net: NetName=ISENSOR_SIMO Pin=J1-19
+Added Pin To Net: NetName=ISENSOR_SOMI Pin=J1-20
+Added Pin To Net: NetName=ISENSOR_CLK Pin=J1-21
+Added Pin To Net: NetName=I\S\E\N\S\O\R\_\C\S\ Pin=J1-22
+Added Pin To Net: NetName=SDA Pin=J1-23
+Added Pin To Net: NetName=SCL Pin=J1-24
+Added Pin To Net: NetName=TDI Pin=J1-25
+Added Pin To Net: NetName=TDO Pin=J1-26
+Added Pin To Net: NetName=T\R\S\T\ Pin=J1-27
+Added Pin To Net: NetName=TMS Pin=J1-28
+Added Pin To Net: NetName=EMU0 Pin=J1-29
+Added Pin To Net: NetName=EMU1 Pin=J1-30
+Added Pin To Net: NetName=TCK Pin=J1-31
+Added Pin To Net: NetName=CAP1 Pin=J1-32
+Added Pin To Net: NetName=CAP2 Pin=J1-33
+Added Pin To Net: NetName=BAT_CURRENT_SENSE Pin=J1-34
+Added Pin To Net: NetName=BAT6S_VOLT_SENSE Pin=J1-35
+Added Pin To Net: NetName=BAT2S_VOLT Pin=J1-36
+Added Pin To Net: NetName=CANTH Pin=J1-37
+Added Pin To Net: NetName=CANTL Pin=J1-38
+Added Pin To Net: NetName=GND Pin=J1-39
+Added Pin To Net: NetName=GND Pin=J1-40
+Added Pin To Net: NetName=V5 Pin=J1-40
+Added Member To Class: ClassName=IO Member=Component J1 HEAD1X42/4-1734592-2
+Added Room: Name=AD
+Added Room: Name=F28335
+Added Room: Name=GPS
+Added Room: Name=IO
+Added Room: Name=POWER
+Added Room: Name=PWM&CAN&SD
+Added Room: Name=SBUS

@@ -84,7 +84,7 @@
 
 void ADIS16488_init(void)
 {
-		GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉低
+		GpioDataRegs.GPASET.bit.GPIO27 = 1;   // iSensor_CS拉高
 		DELAY_US(1000);
 		GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
 		DELAY_US(1000);
