@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v6.2.7                      
 ******************************************************************************
->> Linked Thu Mar 22 14:41:16 2018
+>> Linked Tue Mar 27 16:48:48 2018
 
 OUTPUT FILE NAME:   <FLYCON-example.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00009b0d
+ENTRY POINT SYMBOL: "_c_int00"  address: 00009973
 
 
 MEMORY CONFIGURATION
@@ -14,8 +14,8 @@ MEMORY CONFIGURATION
 PAGE 0:
   BEGIN                 00000000   00000002  00000002  00000000  RWIX
   RAMM0                 00000050   000003b0  00000000  000003b0  RWIX
-  RAML0                 00008000   00000800  000000bf  00000741  RWIX
-  RAML1                 00008800   00001800  00001438  000003c8  RWIX
+  RAML0                 00008000   00000800  0000007f  00000781  RWIX
+  RAML1                 00008800   00001800  000012dd  00000523  RWIX
   RAML2                 0000a000   00001000  00000000  00001000  RWIX
   RAML3                 0000b000   00001000  00000000  00001000  RWIX
   ZONE7A                00200000   0000fc00  00000000  0000fc00  RWIX
@@ -105,39 +105,35 @@ codestart
                   0000806f    0000000a                       : exit.obj (.cinit)
                   00008079    00000002     --HOLE-- [fill = 0]
 
-.switch    0    0000807c    00000040     
-                  0000807c    00000040     DSP2833x_Adc.obj (.switch:_Ad_Get)
+ramfuncs   0    0000807b    00000004     
+                  0000807b    00000004     DSP2833x_usDelay.obj (ramfuncs)
 
-ramfuncs   0    000080bc    00000004     
-                  000080bc    00000004     DSP2833x_usDelay.obj (ramfuncs)
-
-.text      0    00008800    00001438     
+.text      0    00008800    000012dd     
                   00008800    000003b3     GPS.obj (.text)
                   00008bb3    00000323     DSP2833x_DefaultIsr.obj (.text:retain)
                   00008ed6    00000267     DSP2833x_ECan.obj (.text)
                   0000913d    00000203     DSP2833x_Mcbsp.obj (.text)
-                  00009340    000001b1     DSP2833x_EPwm.obj (.text)
-                  000094f1    0000017b     DSP2833x_Adc.obj (.text)
-                  0000966c    000000f7     DSP2833x_SysCtrl.obj (.text)
-                  00009763    000000f4     SBUS.obj (.text)
-                  00009857    00000088     DSP2833x_ECap.obj (.text)
-                  000098df    00000088     rts2800_fpu32.lib : fs_div.obj (.text)
-                  00009967    00000087     DSP2833x_Sci.obj (.text)
-                  000099ee    0000007e     DSP2833x_Spi.obj (.text)
-                  00009a6c    00000053     main.obj (.text)
-                  00009abf    0000004e     DSP2833x_ECap.obj (.text:retain)
-                  00009b0d    00000046     rts2800_fpu32.lib : boot.obj (.text)
-                  00009b53    0000002a     DSP2833x_Gpio.obj (.text)
-                  00009b7d    00000028     DSP2833x_PieCtrl.obj (.text)
-                  00009ba5    00000020     DSP2833x_PieVect.obj (.text)
-                  00009bc5    0000001e     rts2800_fpu32.lib : strncpy.obj (.text)
-                  00009be3    00000019                       : args_main.obj (.text)
-                  00009bfc    00000019                       : exit.obj (.text)
-                  00009c15    00000009                       : _lock.obj (.text)
-                  00009c1e    00000008     DSP2833x_CodeStartBranch.obj (.text)
-                  00009c26    00000008     rts2800_fpu32.lib : strlen.obj (.text)
-                  00009c2e    00000007     DSP2833x_DisInt.obj (.text)
-                  00009c35    00000003     DSP2833x_DBGIER.obj (.text)
+                  00009340    000001df     DSP2833x_EPwm.obj (.text)
+                  0000951f    000000fa     SBUS.obj (.text)
+                  00009619    000000f7     DSP2833x_SysCtrl.obj (.text)
+                  00009710    00000088     DSP2833x_ECap.obj (.text)
+                  00009798    00000088     rts2800_fpu32.lib : fs_div.obj (.text)
+                  00009820    00000087     DSP2833x_Sci.obj (.text)
+                  000098a7    0000007e     DSP2833x_Spi.obj (.text)
+                  00009925    0000004e     DSP2833x_ECap.obj (.text:retain)
+                  00009973    00000046     rts2800_fpu32.lib : boot.obj (.text)
+                  000099b9    0000003f     main.obj (.text)
+                  000099f8    0000002a     DSP2833x_Gpio.obj (.text)
+                  00009a22    00000028     DSP2833x_PieCtrl.obj (.text)
+                  00009a4a    00000020     DSP2833x_PieVect.obj (.text)
+                  00009a6a    0000001e     rts2800_fpu32.lib : strncpy.obj (.text)
+                  00009a88    00000019                       : args_main.obj (.text)
+                  00009aa1    00000019                       : exit.obj (.text)
+                  00009aba    00000009                       : _lock.obj (.text)
+                  00009ac3    00000008     DSP2833x_CodeStartBranch.obj (.text)
+                  00009acb    00000008     rts2800_fpu32.lib : strlen.obj (.text)
+                  00009ad3    00000007     DSP2833x_DisInt.obj (.text)
+                  00009ada    00000003     DSP2833x_DBGIER.obj (.text)
 
 csm_rsvd   0    0033ff80    00000076     DSECT
                   0033ff80    00000076     DSP2833x_CSMPasswords.obj (csm_rsvd)
@@ -459,19 +455,19 @@ address     data page           name
 
 00007900     1e4 (00007900)     _I2caRegs
 
-0000c000     300 (0000c000)     _byte_in_sbus
-0000c001     300 (0000c000)     _bit_in_sbus
-0000c002     300 (0000c000)     _failsafe_status
-0000c003     300 (0000c000)     _bit_in_servo
-0000c004     300 (0000c000)     _bit_in_channel
-0000c005     300 (0000c000)     _sbus_passthrough
-0000c006     300 (0000c000)     _ch
+0000c000     300 (0000c000)     _sbus_passthrough
+0000c001     300 (0000c000)     _byte_in_sbus
+0000c002     300 (0000c000)     _bit_in_servo
+0000c003     300 (0000c000)     _bit_in_channel
+0000c004     300 (0000c000)     _ch
+0000c005     300 (0000c000)     _failsafe_status
+0000c006     300 (0000c000)     _bit_in_sbus
 0000c007     300 (0000c000)     _toChannels
 0000c008     300 (0000c000)     _inData
 0000c009     300 (0000c000)     _bufferIndex
 0000c00a     300 (0000c000)     _result
-0000c01a     300 (0000c000)     _servos
-0000c02c     300 (0000c000)     _channels
+0000c01a     300 (0000c000)     _channels
+0000c02c     300 (0000c000)     _servos
 
 0000c040     301 (0000c040)     _inBuffer
 0000c059     301 (0000c040)     _sbus_data
@@ -501,14 +497,10 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 address    name
 --------   ----
 00008800   .text
-00009bfc   C$$EXIT
-000098df   FS$$DIV
+00009aa1   C$$EXIT
+00009798   FS$$DIV
 00008c99   _ADCINT_ISR
 00380080   _ADC_cal
-0000961e   _Ad_Contrun_Get
-000095f0   _Ad_Contrun_Init
-00009525   _Ad_Get
-00009507   _Ad_Onechanneltime_Init
 00000b00   _AdcMirror
 00007100   _AdcRegs
 00008a83   _CheckSUM
@@ -520,7 +512,7 @@ address    name
 00000c10   _CpuTimer2Regs
 0033fff8   _CsmPwl
 00000ae0   _CsmRegs
-00009732   _CsmUnlock
+000096df   _CsmUnlock
 00008bc7   _DATALOG_ISR
 00008dbb   _DINTCH1_ISR
 00008dc5   _DINTCH2_ISR
@@ -528,11 +520,11 @@ address    name
 00008dd9   _DINTCH4_ISR
 00008de3   _DINTCH5_ISR
 00008ded   _DINTCH6_ISR
-00009c2e   _DSP28x_DisableInt
-00009c32   _DSP28x_RestoreInt
-000080bc   _DSP28x_usDelay
+00009ad3   _DSP28x_DisableInt
+00009ad7   _DSP28x_RestoreInt
+0000807b   _DSP28x_usDelay
 00000880   _DevEmuRegs
-0000967f   _DisableDog
+0000962c   _DisableDog
 00001000   _DmaRegs
 00008e47   _ECAN0INTA_ISR
 00008e5b   _ECAN0INTB_ISR
@@ -559,9 +551,9 @@ address    name
 00006a40   _ECap3Regs
 00006a60   _ECap4Regs
 00006a80   _ECap5Regs
-00009abf   _ECap5_INT_ISR
+00009925   _ECap5_INT_ISR
 00006aa0   _ECap6Regs
-00009ae6   _ECap6_INT_ISR
+0000994c   _ECap6_INT_ISR
 00008eb5   _EMPTY_ISR
 00008bdb   _EMUINT_ISR
 00008cf3   _EPWM1_INT_ISR
@@ -577,26 +569,26 @@ address    name
 00008d25   _EPWM6_INT_ISR
 00008ce9   _EPWM6_TZINT_ISR
 00006800   _EPwm1Regs
-000093cb   _EPwm1Setup
+000093ca   _EPwm1Setup
 00006840   _EPwm2Regs
-000093fc   _EPwm2Setup
+00009402   _EPwm2Setup
 00006880   _EPwm3Regs
-0000942d   _EPwm3Setup
+0000943b   _EPwm3Setup
 000068c0   _EPwm4Regs
-0000945e   _EPwm4Setup
+00009474   _EPwm4Setup
 00006900   _EPwm5Regs
-0000948f   _EPwm5Setup
+000094ad   _EPwm5Setup
 00006940   _EPwm6Regs
-000094c0   _EPwm6Setup
-000093be   _EPwmSetup
+000094e6   _EPwm6Setup
+000093bd   _EPwmSetup
 00008d6b   _EQEP1_INT_ISR
 00008d75   _EQEP2_INT_ISR
 00006b00   _EQep1Regs
 00006b40   _EQep2Regs
-00009b9c   _EnableInterrupts
+00009a41   _EnableInterrupts
 0000c076   _ErrorCount
 00000a80   _FlashRegs
-00009a3c   _GPSSPIExchangeData
+000098f5   _GPSSPIExchangeData
 00008800   _GetComma
 00008aa1   _GetGPRMC
 000089df   _Get_Double_Number
@@ -611,25 +603,23 @@ address    name
 00008bef   _ILLEGAL_ISR
 00008bb3   _INT13_ISR
 00008bbd   _INT14_ISR
-000094f1   _InitAdc
 00008f0d   _InitCan
-00009879   _InitECAP
+00009732   _InitECAP
 00008ed6   _InitECanGpio
 00008ed9   _InitECanaGpio
 00008eef   _InitECanbGpio
-00009857   _InitECap
-0000985d   _InitECap5Gpio
-0000986b   _InitECap6Gpio
-00009858   _InitECapGpio
-00009340   _InitEPwm
-0000934e   _InitEPwm1Gpio
-00009360   _InitEPwm2Gpio
-00009372   _InitEPwm3Gpio
-00009386   _InitEPwm4Gpio
-0000939a   _InitEPwm5Gpio
-000093ac   _InitEPwm6Gpio
-00009341   _InitEPwmGpio
-00009b53   _InitGpio
+00009710   _InitECap
+00009716   _InitECap5Gpio
+00009724   _InitECap6Gpio
+00009711   _InitECapGpio
+0000934d   _InitEPwm1Gpio
+0000935f   _InitEPwm2Gpio
+00009371   _InitEPwm3Gpio
+00009385   _InitEPwm4Gpio
+00009399   _InitEPwm5Gpio
+000093ab   _InitEPwm6Gpio
+00009340   _InitEPwmGpio
+000099f8   _InitGpio
 0000913d   _InitMcbsp
 00009212   _InitMcbspGpio
 00009142   _InitMcbspa
@@ -648,19 +638,19 @@ address    name
 00009207   _InitMcbspb32bit
 000091d4   _InitMcbspb8bit
 0000923e   _InitMcbspbGpio
-000096d7   _InitPeripheralClocks
-00009b7d   _InitPieCtrl
-00009ba5   _InitPieVectTable
-00009687   _InitPll
-00009967   _InitSci
-00009968   _InitSciGpio
-0000996f   _InitSciaGpio
-00009763   _InitScibGpio
-00009984   _InitScicGpio
-000099ee   _InitSpi
-000099ef   _InitSpiGpio
-000099f2   _InitSpiaGpio
-0000966c   _InitSysCtrl
+00009684   _InitPeripheralClocks
+00009a22   _InitPieCtrl
+00009a4a   _InitPieVectTable
+00009634   _InitPll
+00009820   _InitSci
+00009821   _InitSciGpio
+00009828   _InitSciaGpio
+0000951f   _InitScibGpio
+0000983d   _InitScicGpio
+000098a7   _InitSpi
+000098a8   _InitSpiGpio
+000098ab   _InitSpiaGpio
+00009619   _InitSysCtrl
 00008eab   _LUF_ISR
 00008ea1   _LVF_ISR
 00008da7   _MRINTA_ISR
@@ -692,15 +682,15 @@ address    name
 00008c7b   _SEQ2INT_ISR
 00008d7f   _SPIRXINTA_ISR
 00008d89   _SPITXINTA_ISR
-00009a5b   _SPI_RX
-00009a4b   _SPI_TX
+00009914   _SPI_RX
+00009904   _SPI_TX
 00007050   _SciaRegs
 00007750   _ScibRegs
 00007770   _ScicRegs
-00009675   _ServiceDog
-0000988f   _SetCap5
-000098b7   _SetCap6
-00009c35   _SetDBGIER
+00009622   _ServiceDog
+00009748   _SetCap5
+00009770   _SetCap6
+00009ada   _SetDBGIER
 00008a6a   _SetSPIPORT
 00007040   _SpiaRegs
 0000890b   _Str_To_Double
@@ -742,66 +732,66 @@ address    name
 ffffffff   ___binit__
 ffffffff   ___c_args__
 00008000   ___cinit__
-00009c38   ___etext__
+00009add   ___etext__
 ffffffff   ___pinit__
 00008800   ___text__
-00009be3   __args_main
+00009a88   __args_main
 0000c09a   __lock
-00009c1d   __nop
-00009c19   __register_lock
-00009c15   __register_unlock
+00009ac2   __nop
+00009abe   __register_lock
+00009aba   __register_unlock
 00000400   __stack
 0000c098   __unlock
-00009bfc   _abort
-0000c004   _bit_in_channel
-0000c001   _bit_in_sbus
-0000c003   _bit_in_servo
+00009aa1   _abort
+0000c003   _bit_in_channel
+0000c006   _bit_in_sbus
+0000c002   _bit_in_servo
 0000c009   _bufferIndex
-0000c000   _byte_in_sbus
-00009b0d   _c_int00
-0000c006   _ch
-0000c02c   _channels
+0000c001   _byte_in_sbus
+00009973   _c_int00
+0000c004   _ch
+0000c01a   _channels
 00009279   _clkg_delay_loop
 00009263   _delay_loop
 0000c07e   _e
-00009bfe   _exit
-0000c002   _failsafe_status
-00009832   _feedLine
+00009aa3   _exit
+0000c005   _failsafe_status
+000095f4   _feedLine
 0000c040   _inBuffer
 0000c008   _inData
 0000928f   _init_mcbsp_spi
 00009294   _init_mcbspa_spi
 000092d2   _init_mcbspb_spi
-00009a21   _init_spi
-000097a0   _loop
+000098da   _init_spi
+0000955c   _loop
 00009125   _mailbox_check
 0000910e   _mailbox_read
-00009a6c   _main
+000099b9   _main
 0000c00a   _result
 00008ecc   _rsvd_ISR
 0000c059   _sbus_data
-0000c005   _sbus_passthrough
-000099c6   _scia_fifo_init
-0000999a   _scia_init
-000099be   _scia_rx
-000099a8   _scia_xmit
-000099b1   _scia_xmit16
-00009787   _scib_fifo_init
-00009779   _scib_init
-00009798   _scib_rx
-0000978f   _scib_xmit
-000099ce   _scic_init
-000099e6   _scic_rx
-000099dd   _scic_xmit
-0000c01a   _servos
-00009c26   _strlen
-00009bc5   _strncpy
+0000c000   _sbus_passthrough
+0000987f   _scia_fifo_init
+00009853   _scia_init
+00009877   _scia_rx
+00009861   _scia_xmit
+0000986a   _scia_xmit16
+00009543   _scib_fifo_init
+00009535   _scib_init
+00009554   _scib_rx
+0000954b   _scib_xmit
+00009887   _scic_init
+0000989f   _scic_rx
+00009896   _scic_xmit
+0000c02c   _servos
+00009acb   _strlen
+00009a6a   _strncpy
 0000c007   _toChannels
-000097ad   _update_channels
+00009569   _update_channels
 ffffffff   binit
 00008000   cinit
 00000000   code_start
-00009c38   etext
+00009add   etext
 ffffffff   pinit
 
 
@@ -864,7 +854,7 @@ address    name
 00007900   _I2caRegs
 00008000   ___cinit__
 00008000   cinit
-000080bc   _DSP28x_usDelay
+0000807b   _DSP28x_usDelay
 00008800   .text
 00008800   _GetComma
 00008800   ___text__
@@ -992,102 +982,96 @@ address    name
 00009321   _Mcbspa_SPI_RX
 0000932b   _Mcbspb_SPI_TX
 00009336   _Mcbspb_SPI_RX
-00009340   _InitEPwm
-00009341   _InitEPwmGpio
-0000934e   _InitEPwm1Gpio
-00009360   _InitEPwm2Gpio
-00009372   _InitEPwm3Gpio
-00009386   _InitEPwm4Gpio
-0000939a   _InitEPwm5Gpio
-000093ac   _InitEPwm6Gpio
-000093be   _EPwmSetup
-000093cb   _EPwm1Setup
-000093fc   _EPwm2Setup
-0000942d   _EPwm3Setup
-0000945e   _EPwm4Setup
-0000948f   _EPwm5Setup
-000094c0   _EPwm6Setup
-000094f1   _InitAdc
-00009507   _Ad_Onechanneltime_Init
-00009525   _Ad_Get
-000095f0   _Ad_Contrun_Init
-0000961e   _Ad_Contrun_Get
-0000966c   _InitSysCtrl
-00009675   _ServiceDog
-0000967f   _DisableDog
-00009687   _InitPll
-000096d7   _InitPeripheralClocks
-00009732   _CsmUnlock
-00009763   _InitScibGpio
-00009779   _scib_init
-00009787   _scib_fifo_init
-0000978f   _scib_xmit
-00009798   _scib_rx
-000097a0   _loop
-000097ad   _update_channels
-00009832   _feedLine
-00009857   _InitECap
-00009858   _InitECapGpio
-0000985d   _InitECap5Gpio
-0000986b   _InitECap6Gpio
-00009879   _InitECAP
-0000988f   _SetCap5
-000098b7   _SetCap6
-000098df   FS$$DIV
-00009967   _InitSci
-00009968   _InitSciGpio
-0000996f   _InitSciaGpio
-00009984   _InitScicGpio
-0000999a   _scia_init
-000099a8   _scia_xmit
-000099b1   _scia_xmit16
-000099be   _scia_rx
-000099c6   _scia_fifo_init
-000099ce   _scic_init
-000099dd   _scic_xmit
-000099e6   _scic_rx
-000099ee   _InitSpi
-000099ef   _InitSpiGpio
-000099f2   _InitSpiaGpio
-00009a21   _init_spi
-00009a3c   _GPSSPIExchangeData
-00009a4b   _SPI_TX
-00009a5b   _SPI_RX
-00009a6c   _main
-00009abf   _ECap5_INT_ISR
-00009ae6   _ECap6_INT_ISR
-00009b0d   _c_int00
-00009b53   _InitGpio
-00009b7d   _InitPieCtrl
-00009b9c   _EnableInterrupts
-00009ba5   _InitPieVectTable
-00009bc5   _strncpy
-00009be3   __args_main
-00009bfc   C$$EXIT
-00009bfc   _abort
-00009bfe   _exit
-00009c15   __register_unlock
-00009c19   __register_lock
-00009c1d   __nop
-00009c26   _strlen
-00009c2e   _DSP28x_DisableInt
-00009c32   _DSP28x_RestoreInt
-00009c35   _SetDBGIER
-00009c38   ___etext__
-00009c38   etext
-0000c000   _byte_in_sbus
-0000c001   _bit_in_sbus
-0000c002   _failsafe_status
-0000c003   _bit_in_servo
-0000c004   _bit_in_channel
-0000c005   _sbus_passthrough
-0000c006   _ch
+00009340   _InitEPwmGpio
+0000934d   _InitEPwm1Gpio
+0000935f   _InitEPwm2Gpio
+00009371   _InitEPwm3Gpio
+00009385   _InitEPwm4Gpio
+00009399   _InitEPwm5Gpio
+000093ab   _InitEPwm6Gpio
+000093bd   _EPwmSetup
+000093ca   _EPwm1Setup
+00009402   _EPwm2Setup
+0000943b   _EPwm3Setup
+00009474   _EPwm4Setup
+000094ad   _EPwm5Setup
+000094e6   _EPwm6Setup
+0000951f   _InitScibGpio
+00009535   _scib_init
+00009543   _scib_fifo_init
+0000954b   _scib_xmit
+00009554   _scib_rx
+0000955c   _loop
+00009569   _update_channels
+000095f4   _feedLine
+00009619   _InitSysCtrl
+00009622   _ServiceDog
+0000962c   _DisableDog
+00009634   _InitPll
+00009684   _InitPeripheralClocks
+000096df   _CsmUnlock
+00009710   _InitECap
+00009711   _InitECapGpio
+00009716   _InitECap5Gpio
+00009724   _InitECap6Gpio
+00009732   _InitECAP
+00009748   _SetCap5
+00009770   _SetCap6
+00009798   FS$$DIV
+00009820   _InitSci
+00009821   _InitSciGpio
+00009828   _InitSciaGpio
+0000983d   _InitScicGpio
+00009853   _scia_init
+00009861   _scia_xmit
+0000986a   _scia_xmit16
+00009877   _scia_rx
+0000987f   _scia_fifo_init
+00009887   _scic_init
+00009896   _scic_xmit
+0000989f   _scic_rx
+000098a7   _InitSpi
+000098a8   _InitSpiGpio
+000098ab   _InitSpiaGpio
+000098da   _init_spi
+000098f5   _GPSSPIExchangeData
+00009904   _SPI_TX
+00009914   _SPI_RX
+00009925   _ECap5_INT_ISR
+0000994c   _ECap6_INT_ISR
+00009973   _c_int00
+000099b9   _main
+000099f8   _InitGpio
+00009a22   _InitPieCtrl
+00009a41   _EnableInterrupts
+00009a4a   _InitPieVectTable
+00009a6a   _strncpy
+00009a88   __args_main
+00009aa1   C$$EXIT
+00009aa1   _abort
+00009aa3   _exit
+00009aba   __register_unlock
+00009abe   __register_lock
+00009ac2   __nop
+00009acb   _strlen
+00009ad3   _DSP28x_DisableInt
+00009ad7   _DSP28x_RestoreInt
+00009ada   _SetDBGIER
+00009add   ___etext__
+00009add   etext
+0000c000   _sbus_passthrough
+0000c001   _byte_in_sbus
+0000c002   _bit_in_servo
+0000c003   _bit_in_channel
+0000c004   _ch
+0000c005   _failsafe_status
+0000c006   _bit_in_sbus
 0000c007   _toChannels
 0000c008   _inData
 0000c009   _bufferIndex
 0000c00a   _result
-0000c01a   _servos
-0000c02c   _channels
+0000c01a   _channels
+0000c02c   _servos
 0000c040   _inBuffer
 0000c059   _sbus_data
 0000c072   _PassCount
@@ -1113,4 +1097,4 @@ ffffffff   ___pinit__
 ffffffff   binit
 ffffffff   pinit
 
-[303 symbols]
+[297 symbols]

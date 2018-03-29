@@ -71,7 +71,7 @@ GenerateClassCluster=0
 DocumentUniqueId=EANFPYUW
 
 [Document3]
-DocumentPath=..\..\..\..\..\..\MyGitWorkspaceTest\PCBLib\研发中心PCB库文件.PcbLib
+DocumentPath=..\..\..\PCBLib\研发中心PCB库文件.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -85,10 +85,10 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=ABLYNBKJ
 
 [Document4]
-DocumentPath=..\..\..\..\..\..\MyGitWorkspaceTest\PCBLib\研发中心原理图库文件.SchLib
+DocumentPath=..\..\..\PCBLib\研发中心原理图库文件.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0
@@ -120,6 +120,27 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=RTJURFFW
+
+[Document6]
+DocumentPath=PCB2.PcbDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=CPOPOTYP
+
+[GeneratedDocument1]
+DocumentPath=Project Outputs for iSensor\Design Rule Check - PCB2.html
+DItemRevisionGUID=
 
 [Configuration1]
 Name=Default Configuration

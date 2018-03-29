@@ -28,19 +28,6 @@
 #define TBCTLVAL  0x200E              // Up-down cnt, timebase = SYSCLKOUT
 
 //---------------------------------------------------------------------------
-// InitEPwm: 
-//---------------------------------------------------------------------------
-// This function initializes the ePWM(s) to a known state.
-//
-void InitEPwm(void)
-{
-   // Initialize ePWM1/2/3/4/5/6
-
-   //tbd...
- 
-}
-
-//---------------------------------------------------------------------------
 // Example: InitEPwmGpio: 
 //---------------------------------------------------------------------------
 // This function initializes GPIO pins to function as ePWM pins
@@ -215,17 +202,17 @@ void EPwm1Setup()
 	EPwm1Regs.TBPHS.half.TBPHS=0;
 	EPwm1Regs.TBCTR=0;
 	// 配置CC模块
-	EPwm1Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
-	EPwm1Regs.CMPA.half.CMPA =SQ/2;
+	EPwm1Regs.CMPCTL.all=0x00;        // 影子装载模式
+	EPwm1Regs.CMPA.half.CMPA =SQ*3/40;
 	EPwm1Regs.CMPB=0;
 	// 配置AQ模块
-	EPwm1Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
-	                                  // EPWMxA = 0 when CTR=CMPA and counter dec
-	EPwm1Regs.AQCTLB.all=0;
+	EPwm1Regs.AQCTLA.bit.CAU = 0x1;
+	EPwm1Regs.AQCTLA.bit.CAD = 0x3;
+	EPwm1Regs.AQCTLB.bit.CBU = 0x1;
+	EPwm1Regs.AQCTLB.bit.CBD = 0x3;
 	EPwm1Regs.AQSFRC.all=0;
 	EPwm1Regs.AQCSFRC.all=0;
 	// 配置DB模块
-	EPwm1Regs.DBCTL.all=0xb;          // EPWMxB is inverted
 	EPwm1Regs.DBRED=0;
 	EPwm1Regs.DBFED=0;
 	// 配置TZ模块
@@ -254,221 +241,216 @@ void EPwm1Setup()
 void EPwm2Setup()
 {
     InitEPwm2Gpio();
+    // 配置TB模块
 	EPwm2Regs.TBSTS.all=0;
 	EPwm2Regs.TBPHS.half.TBPHS=0;
 	EPwm2Regs.TBCTR=0;
-
-	EPwm2Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
-	EPwm2Regs.CMPA.half.CMPA =SQ/2;
-	EPwm2Regs.CMPB=0;
-
-	EPwm2Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
-	                                  // EPWMxA = 0 when CTR=CMPA and counter dec
-	EPwm2Regs.AQCTLB.all=0;
+	// 配置CC模块
+	EPwm2Regs.CMPCTL.all=0x00;        // 影子装载模式
+	EPwm2Regs.CMPA.half.CMPA =SQ*3/40;
+	EPwm2Regs.CMPB=SQ*3/40;
+	// 配置AQ模块
+	EPwm2Regs.AQCTLA.bit.CAU = 0x1;
+	EPwm2Regs.AQCTLA.bit.CAD = 0x3;
+	EPwm2Regs.AQCTLB.bit.CBU = 0x1;
+	EPwm2Regs.AQCTLB.bit.CBD = 0x3;
 	EPwm2Regs.AQSFRC.all=0;
 	EPwm2Regs.AQCSFRC.all=0;
-
-	EPwm2Regs.DBCTL.all=0xb;          // EPWMxB is inverted
+	// 配置DB模块
 	EPwm2Regs.DBRED=0;
 	EPwm2Regs.DBFED=0;
-
+	// 配置TZ模块
 	EPwm2Regs.TZSEL.all=0;
 	EPwm2Regs.TZCTL.all=0;
 	EPwm2Regs.TZEINT.all=0;
 	EPwm2Regs.TZFLG.all=0;
 	EPwm2Regs.TZCLR.all=0;
 	EPwm2Regs.TZFRC.all=0;
-
+	// 配置ET模块
 	EPwm2Regs.ETSEL.all=9;            // Interrupt when TBCTR = 0x0000
 	EPwm2Regs.ETPS.all=1;	          // Interrupt on first event
 	EPwm2Regs.ETFLG.all=0;
 	EPwm2Regs.ETCLR.all=0;
 	EPwm2Regs.ETFRC.all=0;
-
-	EPwm2Regs.PCCTL.all=0;
+	// 配置PC模块  用于加载一个高频调制信号
+	EPwm2Regs.PCCTL.all=0;           // CHPEN=0 禁用PWM斩波功能
 
 	EPwm2Regs.TBCTL.all=0x0010+TBCTLVAL;			// Enable Timer
-	EPwm2Regs.TBCTL.bit.HSPCLKDIV=1;
-	EPwm2Regs.TBCTL.bit.CLKDIV=6;
+	EPwm2Regs.TBCTL.bit.HSPCLKDIV=1;                // 2分频
+	EPwm2Regs.TBCTL.bit.CLKDIV=6;                   // 64分频
 	EPwm2Regs.TBPRD=SQ;
-//	EPwm2Regs.TBPRD=SP;
-
 }
 
 void EPwm3Setup()
 {
     InitEPwm3Gpio();
+    // 配置TB模块
 	EPwm3Regs.TBSTS.all=0;
 	EPwm3Regs.TBPHS.half.TBPHS=0;
 	EPwm3Regs.TBCTR=0;
-
-	EPwm3Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
-	EPwm3Regs.CMPA.half.CMPA = SQ*3/40;
-	EPwm3Regs.CMPB=0;
-
-	EPwm3Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
-	                                  // EPWMxA = 0 when CTR=CMPA and counter dec
-	EPwm3Regs.AQCTLB.all=0;
+	// 配置CC模块
+	EPwm3Regs.CMPCTL.all=0x00;        // 影子装载模式
+	EPwm3Regs.CMPA.half.CMPA =SQ*3/40;
+	EPwm3Regs.CMPB=SQ*3/40;
+	// 配置AQ模块
+	EPwm3Regs.AQCTLA.bit.CAU = 0x1;
+	EPwm3Regs.AQCTLA.bit.CAD = 0x3;
+	EPwm3Regs.AQCTLB.bit.CBU = 0x1;
+	EPwm3Regs.AQCTLB.bit.CBD = 0x3;
 	EPwm3Regs.AQSFRC.all=0;
 	EPwm3Regs.AQCSFRC.all=0;
-
-	EPwm3Regs.DBCTL.all=0xb;          // EPWMxB is inverted
+	// 配置DB模块
 	EPwm3Regs.DBRED=0;
 	EPwm3Regs.DBFED=0;
-
+	// 配置TZ模块
 	EPwm3Regs.TZSEL.all=0;
 	EPwm3Regs.TZCTL.all=0;
 	EPwm3Regs.TZEINT.all=0;
 	EPwm3Regs.TZFLG.all=0;
 	EPwm3Regs.TZCLR.all=0;
 	EPwm3Regs.TZFRC.all=0;
-
+	// 配置ET模块
 	EPwm3Regs.ETSEL.all=9;            // Interrupt when TBCTR = 0x0000
 	EPwm3Regs.ETPS.all=1;	          // Interrupt on first event
 	EPwm3Regs.ETFLG.all=0;
 	EPwm3Regs.ETCLR.all=0;
 	EPwm3Regs.ETFRC.all=0;
-
-	EPwm3Regs.PCCTL.all=0;
+	// 配置PC模块  用于加载一个高频调制信号
+	EPwm3Regs.PCCTL.all=0;           // CHPEN=0 禁用PWM斩波功能
 
 	EPwm3Regs.TBCTL.all=0x0010+TBCTLVAL;			// Enable Timer
-	EPwm3Regs.TBCTL.bit.HSPCLKDIV=1;
-	EPwm3Regs.TBCTL.bit.CLKDIV=6;
+	EPwm3Regs.TBCTL.bit.HSPCLKDIV=1;                // 2分频
+	EPwm3Regs.TBCTL.bit.CLKDIV=6;                   // 64分频
 	EPwm3Regs.TBPRD=SQ;
-
-
 }
 
 void EPwm4Setup()
 {
     InitEPwm4Gpio();
+    // 配置TB模块
 	EPwm4Regs.TBSTS.all=0;
 	EPwm4Regs.TBPHS.half.TBPHS=0;
 	EPwm4Regs.TBCTR=0;
-
-	EPwm4Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
+	// 配置CC模块
+	EPwm4Regs.CMPCTL.all=0x00;        // 影子装载模式
 	EPwm4Regs.CMPA.half.CMPA =SQ*3/40;
-	EPwm4Regs.CMPB=0;
-
-	EPwm4Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
-	                                  // EPWMxA = 0 when CTR=CMPA and counter dec
-	EPwm4Regs.AQCTLB.all=0;
+	EPwm4Regs.CMPB=SQ*3/40;
+	// 配置AQ模块
+	EPwm4Regs.AQCTLA.bit.CAU = 0x1;
+	EPwm4Regs.AQCTLA.bit.CAD = 0x3;
+	EPwm4Regs.AQCTLB.bit.CBU = 0x1;
+	EPwm4Regs.AQCTLB.bit.CBD = 0x3;
 	EPwm4Regs.AQSFRC.all=0;
 	EPwm4Regs.AQCSFRC.all=0;
-
-	EPwm4Regs.DBCTL.all=0xb;          // EPWMxB is inverted
+	// 配置DB模块
 	EPwm4Regs.DBRED=0;
 	EPwm4Regs.DBFED=0;
-
+	// 配置TZ模块
 	EPwm4Regs.TZSEL.all=0;
 	EPwm4Regs.TZCTL.all=0;
 	EPwm4Regs.TZEINT.all=0;
 	EPwm4Regs.TZFLG.all=0;
 	EPwm4Regs.TZCLR.all=0;
 	EPwm4Regs.TZFRC.all=0;
-
+	// 配置ET模块
 	EPwm4Regs.ETSEL.all=9;            // Interrupt when TBCTR = 0x0000
 	EPwm4Regs.ETPS.all=1;	          // Interrupt on first event
 	EPwm4Regs.ETFLG.all=0;
 	EPwm4Regs.ETCLR.all=0;
 	EPwm4Regs.ETFRC.all=0;
-
-	EPwm4Regs.PCCTL.all=0;
+	// 配置PC模块  用于加载一个高频调制信号
+	EPwm4Regs.PCCTL.all=0;           // CHPEN=0 禁用PWM斩波功能
 
 	EPwm4Regs.TBCTL.all=0x0010+TBCTLVAL;			// Enable Timer
-	EPwm4Regs.TBCTL.bit.HSPCLKDIV=1;
-	EPwm4Regs.TBCTL.bit.CLKDIV=6;
+	EPwm4Regs.TBCTL.bit.HSPCLKDIV=1;                // 2分频
+	EPwm4Regs.TBCTL.bit.CLKDIV=6;                   // 64分频
 	EPwm4Regs.TBPRD=SQ;
-//	EPwm4Regs.TBPRD=SP;
-
 }
 
 void EPwm5Setup()
 {
     InitEPwm5Gpio();
+    // 配置TB模块
 	EPwm5Regs.TBSTS.all=0;
 	EPwm5Regs.TBPHS.half.TBPHS=0;
 	EPwm5Regs.TBCTR=0;
-
-	EPwm5Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
-	EPwm5Regs.CMPA.half.CMPA =SQ/2;
-	EPwm5Regs.CMPB=0;
-
-	EPwm5Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
-	                                  // EPWMxA = 0 when CTR=CMPA and counter dec
-	EPwm5Regs.AQCTLB.all=0;
+	// 配置CC模块
+	EPwm5Regs.CMPCTL.all=0x00;        // 影子装载模式
+	EPwm5Regs.CMPA.half.CMPA =SQ*3/40;
+	EPwm5Regs.CMPB=SQ*3/40;
+	// 配置AQ模块
+	EPwm5Regs.AQCTLA.bit.CAU = 0x1;
+	EPwm5Regs.AQCTLA.bit.CAD = 0x3;
+	EPwm5Regs.AQCTLB.bit.CBU = 0x1;
+	EPwm5Regs.AQCTLB.bit.CBD = 0x3;
 	EPwm5Regs.AQSFRC.all=0;
 	EPwm5Regs.AQCSFRC.all=0;
-
-	EPwm5Regs.DBCTL.all=0xb;          // EPWMxB is inverted
+	// 配置DB模块
 	EPwm5Regs.DBRED=0;
 	EPwm5Regs.DBFED=0;
-
+	// 配置TZ模块
 	EPwm5Regs.TZSEL.all=0;
 	EPwm5Regs.TZCTL.all=0;
 	EPwm5Regs.TZEINT.all=0;
 	EPwm5Regs.TZFLG.all=0;
 	EPwm5Regs.TZCLR.all=0;
 	EPwm5Regs.TZFRC.all=0;
-
+	// 配置ET模块
 	EPwm5Regs.ETSEL.all=9;            // Interrupt when TBCTR = 0x0000
 	EPwm5Regs.ETPS.all=1;	          // Interrupt on first event
 	EPwm5Regs.ETFLG.all=0;
 	EPwm5Regs.ETCLR.all=0;
 	EPwm5Regs.ETFRC.all=0;
-
-	EPwm5Regs.PCCTL.all=0;
+	// 配置PC模块  用于加载一个高频调制信号
+	EPwm5Regs.PCCTL.all=0;           // CHPEN=0 禁用PWM斩波功能
 
 	EPwm5Regs.TBCTL.all=0x0010+TBCTLVAL;			// Enable Timer
-	EPwm5Regs.TBCTL.bit.HSPCLKDIV=1;
-	EPwm5Regs.TBCTL.bit.CLKDIV=6;
+	EPwm5Regs.TBCTL.bit.HSPCLKDIV=1;                // 2分频
+	EPwm5Regs.TBCTL.bit.CLKDIV=6;                   // 64分频
 	EPwm5Regs.TBPRD=SQ;
-//	EPwm5Regs.TBPRD=SP;
-
 }
 
 void EPwm6Setup()
 {
     InitEPwm6Gpio();
+    // 配置TB模块
 	EPwm6Regs.TBSTS.all=0;
 	EPwm6Regs.TBPHS.half.TBPHS=0;
 	EPwm6Regs.TBCTR=0;
-
-	EPwm6Regs.CMPCTL.all=0x50;        // Immediate mode for CMPA and CMPB
-	EPwm6Regs.CMPA.half.CMPA =SQ/2;
-	EPwm6Regs.CMPB=0;
-
-	EPwm6Regs.AQCTLA.all=0x60;        // EPWMxA = 1 when CTR=CMPA and counter inc
-	                                  // EPWMxA = 0 when CTR=CMPA and counter dec
-	EPwm6Regs.AQCTLB.all=0;
+	// 配置CC模块
+	EPwm6Regs.CMPCTL.all=0x00;        // 影子装载模式
+	EPwm6Regs.CMPA.half.CMPA =SQ*3/40;
+	EPwm6Regs.CMPB=SQ*3/40;
+	// 配置AQ模块
+	EPwm6Regs.AQCTLA.bit.CAU = 0x1;
+	EPwm6Regs.AQCTLA.bit.CAD = 0x3;
+	EPwm6Regs.AQCTLB.bit.CBU = 0x1;
+	EPwm6Regs.AQCTLB.bit.CBD = 0x3;
 	EPwm6Regs.AQSFRC.all=0;
 	EPwm6Regs.AQCSFRC.all=0;
-
-	EPwm6Regs.DBCTL.all=0xb;          // EPWMxB is inverted
+	// 配置DB模块
 	EPwm6Regs.DBRED=0;
 	EPwm6Regs.DBFED=0;
-
+	// 配置TZ模块
 	EPwm6Regs.TZSEL.all=0;
 	EPwm6Regs.TZCTL.all=0;
 	EPwm6Regs.TZEINT.all=0;
 	EPwm6Regs.TZFLG.all=0;
 	EPwm6Regs.TZCLR.all=0;
 	EPwm6Regs.TZFRC.all=0;
-
+	// 配置ET模块
 	EPwm6Regs.ETSEL.all=9;            // Interrupt when TBCTR = 0x0000
 	EPwm6Regs.ETPS.all=1;	          // Interrupt on first event
 	EPwm6Regs.ETFLG.all=0;
 	EPwm6Regs.ETCLR.all=0;
 	EPwm6Regs.ETFRC.all=0;
-
-	EPwm6Regs.PCCTL.all=0;
+	// 配置PC模块  用于加载一个高频调制信号
+	EPwm6Regs.PCCTL.all=0;           // CHPEN=0 禁用PWM斩波功能
 
 	EPwm6Regs.TBCTL.all=0x0010+TBCTLVAL;			// Enable Timer
-	EPwm6Regs.TBCTL.bit.HSPCLKDIV=1;
-	EPwm6Regs.TBCTL.bit.CLKDIV=6;
+	EPwm6Regs.TBCTL.bit.HSPCLKDIV=1;                // 2分频
+	EPwm6Regs.TBCTL.bit.CLKDIV=6;                   // 64分频
 	EPwm6Regs.TBPRD=SQ;
-//	EPwm6Regs.TBPRD=SP;
-
 }
 
 

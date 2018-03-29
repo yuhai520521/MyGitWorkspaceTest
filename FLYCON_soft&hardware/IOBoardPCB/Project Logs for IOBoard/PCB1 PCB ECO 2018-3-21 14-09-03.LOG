@@ -1,0 +1,5 @@
+Added Component: Designator=FB9(0603-FB)
+Added Pin To Net: NetName=NetFB1_1 Pin=FB9-1
+Added Pin To Net: NetName=VDD5_PERIPH Pin=FB9-2
+Added Member To Class: ClassName=IO Member=Component FB9 742792625
+Added Room: Name=IO

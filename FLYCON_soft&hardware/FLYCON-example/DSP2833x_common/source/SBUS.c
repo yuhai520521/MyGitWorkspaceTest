@@ -18,6 +18,11 @@
 #define SBUS_SIGNAL_LOST 0x01
 #define SBUS_SIGNAL_FAILSAFE 0x03
 
+#if (CPU_FRQ_150MHZ)
+  #define CPU_CLK   150e6
+#endif
+#define PWM_CLK   50                // PWM频率设置50Hz
+#define SQ        CPU_CLK/(2*128*PWM_CLK)
 //---------------------------------------------------------------------------
 // Example: InitSciGpio: 
 //---------------------------------------------------------------------------
@@ -182,10 +187,10 @@ void update_channels(void)
   {
 	  x = 2000;
   }
-  t = x*3/5;
-  EPwm3Regs.CMPA.half.CMPA = t;
-  EPwm4Regs.CMPA.half.CMPA = t;
-  scia_xmit16(x);
+
+    EPwm3Regs.CMPA.half.CMPA = SQ*x/20000;
+
+//  scia_xmit16(x);
   // sbus_data[23]是flags字节
 
   // DigiChannel 1

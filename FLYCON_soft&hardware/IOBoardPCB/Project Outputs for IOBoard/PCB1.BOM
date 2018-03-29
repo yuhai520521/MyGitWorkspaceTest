@@ -1,0 +1,25 @@
+Bill of Material for 
+On 2018/3/26 at 8:43:42
+
+ Comment             Pattern     Quantity  Components
+------------------------------------------------------------------------------
+ 0ZCH0150FF2E        1210             1    PTC1                                              
+ 220uF/16V           6.3*7.7/H/220u    1    C1                                                
+ 742792625           0603-FB          9    FB1, FB2, FB3, FB4, FB5, FB6                      
+                                           FB7, FB8, FB9
+ 82536040            0603R            7    VDR1, VDR4, VDR5, VDR6, VDR7                      
+                                           VDR9, VDR10
+ 82536070/9V         0603R            1    VDR8                                              
+ CAN                 GH1.25-4         1    J1                                                
+ CAP1                SIP3             1    CAP1                                              
+ CAP2                SIP3             1    CAP2                                              
+ HEAD1X42            FPC0.5-42        2    J12, J13                                          
+ HEAD3X12            3X13RA           1    J5                                                
+ I2C                 GH1.25-4         1    J6                                                
+ iSensor             GH1.25-6         1    J7                                                
+ JTAG                IDC14-SMD        1    JTAG                                              
+ POWER_5V            GH1.25-6         1    J3                                                
+ SBUS                SIP3             1    SBUSRX                                            
+ SK52B               SMB/DO-214AA     1    D1                                                
+ UART                GH1.25-4         1    J10                                               
+ UART                SIP3             1    UART                                              

@@ -108,10 +108,6 @@ void ADIS16488_init(void)
 			   }
 	   GpioDataRegs.GPACLEAR.bit.GPIO27 = 1;   // iSensor_CS拉低
 	   DELAY_US(1000);
-//	   Mcbspb_SPI_TX(0x8003);             // 转到第3页
-//	   Mcbspb_SPI_TX(0x8280);             // 软件复位配置
-//	   Mcbspb_SPI_TX(0x8300);
-//	   Mcbspb_SPI_TX(0x8000);            // 转到第0页 读取数据
 
 }
 

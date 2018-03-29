@@ -1,0 +1,42 @@
+Field=Comment~String~Comment~100|Field=Description~String~Description~100|Field=Designator~String~Designator~100|Field=Footprint~String~Footprint~100|Field=LibRef~String~LibRef~100|Field=Quantity~Integer~Quantity~100|ReportField=Currency~<none>|ReportField=ProductionQuantity~1|ReportField=ProjectFileName~FlyconforDSP.PrjPcb|ReportField=ProjectFullPath~F:\MyGitWorkspaceTest\FLYCON_soft&hardware\FlyconforDSP\FlyconforDSP.PrjPcb|ReportField=Title~Bill of Materials For PCB Document [PCB2.0.PcbDoc]|ReportField=TotalQuantity~115|ReportField=ReportTime~9:47:21|ReportField=ReportDate~2018/3/23|ReportField=ReportDateTime~2018/3/23 9:47:21|ReportField=OutputName~Bill of Materials|ReportField=OutputType~BOM_PartType|ReportField=GeneratorName~BOM|ReportField=GeneratorDescription~Bill of Materials|ReportField=VariantName~None|ReportField=DataSourceFileName~PCB2.0.PcbDoc|ReportField=DataSourceFullPath~F:\MyGitWorkspaceTest\FLYCON_soft&hardware\FlyconforDSP\PCB2.0.PcbDoc
+BUZZER|Buzzer|B1|SMD-Beep(9.6*9.6)|BUZZER|1
+0.1uF||C1, C2, C3, C4, C5, C6, C7, C8, C9, C10, C11, C12, C13, C14, C15, C16, C17, C18, C19, C20, C21, C22, C27, C28, C29, C30, C31, C32, C33, C34, C35, C36, C37, C38, C39, C40, C42, C45, C46, C47|0603C|C|40
+2.2uF||C23, C24|0603C|C|2
+24pF||C25, C26|0603C|C|2
+10uF||C41|0603C|C|1
+10uF/6.3V||C43, C44|3528/B|C-POLAR|2
+742792625||FB1, FB2, FB3, FB4, FB5, FB6, FB7, FB8|0603-FB|FB|8
+HEAD1X42/4-1734592-2||J1|FPC0.5-42|HEAD1X42|1
+ANTINA(NC)||JP1|IPEX-20279-00E-03|ANTINA|1
+RESET_Key||K1|KEY(2*4*3.5)|RESET_Key|1
+RED||LED1, LED4|0603D|LED|2
+GRREN||LED2|0603D|LED|1
+BLUE||LED3|0603D|LED|1
+8550|PNP Transistor|Q1|SOT23-PNP|PNP|1
+24.9K/1%||R1|0603R|R|1
+1K||R2, R4, R6|0603R|R|3
+500||R3|0603R|R|1
+10K||R5, R7, R8, R9, R11, R12, R15, R18, R19, R20, R29, R30, R31, R32|0603R|R|14
+120||R10|0603R|R|1
+220||R13, R14|0603R|R|2
+18.2K/1%||R16|0603R|R|1
+30.1K/1%||R17|0603R|R|1
+2K/0.1%||R21|0603R|R|1
+1K/0.1%||R22, R26|0603R|R|2
+10K/0.1%||R23, R24, R25, R28|0603R|R|4
+667/0.1%||R27|0603R|R|1
+YC248/220||RP1, RP2, RP3|YC248|RP|3
+TMS320F28335||U1|LQFP-176|TMS320F28335|1
+DS18B20||U2|TO-92|DS18B20|1
+74HC245||U3, U4|TSSOP20|74HC245|2
+NLSX4373||U5, U6|UDFN8|NLSX4373|2
+MICROSD_SPI||U7|microsd|MICROSD_SPI|1
+MC33901||U8|SOIC-8|MC33901|1
+ubox-M8N||U9|ublox-M8|ubox-M8N|1
+74LVC2G240||U10|VSSOP8-0.5|74LVC2G240|1
+TPS767D301||U11|TPS767D301|TPS767D301|1
+IMP811||U12|IMP811|IMP811|1
+74HC08D|2-INPUT AND GATE|U13|TSSOP14|74HC08D|1
+MPXV7002DP||U14|MPXV7002DP|MPXV7002DP|1
+82536040||VDR1|0603R|Varistor|1
+30M||Y1|5032Y|Crystal-4|1

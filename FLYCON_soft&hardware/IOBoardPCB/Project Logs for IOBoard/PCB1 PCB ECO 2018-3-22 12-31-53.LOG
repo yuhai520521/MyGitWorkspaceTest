@@ -1,0 +1,16 @@
+Added Component: Designator=J11(IDC14-SMD)
+Added Pin To Net: NetName=TMS Pin=J11-1
+Added Pin To Net: NetName=T\R\S\T\ Pin=J11-2
+Added Pin To Net: NetName=TDI Pin=J11-3
+Added Pin To Net: NetName=GND Pin=J11-4
+Added Pin To Net: NetName=VDD5_PERIPH Pin=J11-5
+Added Pin To Net: NetName=TDO Pin=J11-7
+Added Pin To Net: NetName=GND Pin=J11-8
+Added Pin To Net: NetName=TCK Pin=J11-9
+Added Pin To Net: NetName=GND Pin=J11-10
+Added Pin To Net: NetName=TCK Pin=J11-11
+Added Pin To Net: NetName=GND Pin=J11-12
+Added Pin To Net: NetName=EMU0 Pin=J11-13
+Added Pin To Net: NetName=EMU1 Pin=J11-14
+Added Member To Class: ClassName=IO Member=Component J11 JTAG
+Added Room: Name=IO
