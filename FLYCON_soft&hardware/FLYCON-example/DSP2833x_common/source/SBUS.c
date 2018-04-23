@@ -188,8 +188,8 @@ void update_channels(void)
 	  x = 2000;
   }
 
-    EPwm3Regs.CMPA.half.CMPA = SQ*x/20000;
-
+//    EPwm3Regs.CMPA.half.CMPA = SQ*x/20000;
+    EPwm1Regs.CMPB = SQ*x/20000;
 //  scia_xmit16(x);
   // sbus_data[23]ÊÇflags×Ö½Ú
 

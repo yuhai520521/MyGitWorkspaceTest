@@ -1,4 +1,0 @@
-Change Component Footprint: Designator=C1 Old Footprint=10*10/G/470uF New Footprint=6.3*7.7/H/220u
-Change Component Comment : Designator=C1 Old Comment=470uF/16V New Comment=220uF/16V
-Added Member To Class: ClassName=IO Member=Component FB1 742792625
-Added Room: Name=IO

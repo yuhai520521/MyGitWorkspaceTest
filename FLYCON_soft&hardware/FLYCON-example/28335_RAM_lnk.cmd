@@ -85,10 +85,10 @@ PAGE 0 :
 
    BEGIN      : origin = 0x000000, length = 0x000002     /* Boot to M0 will go here                      */
    RAMM0      : origin = 0x000050, length = 0x0003B0
-   RAML0      : origin = 0x008000, length = 0x000800
-   RAML1      : origin = 0x008800, length = 0x001800
-   RAML2      : origin = 0x00A000, length = 0x001000
-   RAML3      : origin = 0x00B000, length = 0x001000
+   RAML0      : origin = 0x008000, length = 0x000100
+   RAML1      : origin = 0x008100, length = 0x003D00
+   RAML2      : origin = 0x00BE00, length = 0x000100
+   RAML3      : origin = 0x00BF00, length = 0x000100
    ZONE7A     : origin = 0x200000, length = 0x00FC00    /* XINTF zone 7 - program space */
    CSM_RSVD   : origin = 0x33FF80, length = 0x000076     /* Part of FLASHA.  Program with all 0x0000 when CSM is in use. */
    CSM_PWL    : origin = 0x33FFF8, length = 0x000008     /* Part of FLASHA.  CSM password locations in FLASHA            */
@@ -107,11 +107,11 @@ PAGE 1 :
 
    BOOT_RSVD  : origin = 0x000002, length = 0x00004E     /* Part of M0, BOOT rom will use this for stack */
    RAMM1      : origin = 0x000400, length = 0x000400     /* on-chip RAM block M1 */
-   RAML4      : origin = 0x00C000, length = 0x001000
-   RAML5      : origin = 0x00D000, length = 0x001000
-   RAML6      : origin = 0x00E000, length = 0x001000
-   RAML7      : origin = 0x00F000, length = 0x001000
-   ZONE7B     : origin = 0x20FC00, length = 0x000400     /* XINTF zone 7 - data space */
+   RAML4      : origin = 0x00C000, length = 0x003000
+   RAML5      : origin = 0x00F000, length = 0x000200
+   RAML6      : origin = 0x00F200, length = 0x000100
+   RAML7      : origin = 0x00F300, length = 0x000100
+   ZONE7B     : origin = 0x20F400, length = 0x000400     /* XINTF zone 7 - data space */
 }
 
 // .text            : > RAML1,     PAGE = 0

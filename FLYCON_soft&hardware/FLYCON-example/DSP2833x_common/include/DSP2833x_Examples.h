@@ -113,6 +113,7 @@ extern "C" {
 #include "adis16488.h"
 #include "GPS.h"
 #include "SBUS.h"
+#include "SD.h"
 
 #define PARTNO_28335  0xFA
 #define PARTNO_28334  0xF9

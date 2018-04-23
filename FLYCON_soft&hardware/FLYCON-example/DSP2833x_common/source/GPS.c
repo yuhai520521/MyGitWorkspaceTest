@@ -355,10 +355,12 @@ void SetSPIPORT(void)
 {
 //	Uint16 SPIPORT_command[28] = {0xB5,0x62,0x06,0x00,0x14,0x00,0x04,0x00,0x00,0x02,0x00,0x00,0x32,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x52,0x76};
 //	Uint16 SPIPORT_command[28] = {0xB5,0x62,0x06,0x00,0x14,0x00,0x04,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x20,0xBA};
-	Uint16 SPIPORT_command[8] = {0xB5,0x62,0x01,0x07,0x00,0x00,0x084,0x19};
+//	Uint16 SPIPORT_command[8] = {0xB5,0x62,0x01,0x07,0x00,0x00,0x084,0x19};
+	Uint16 SPIPORT_command[10] =  {0xB5,0x62,0x06,0x01,0x02,0x00,0xF0,0x04,0xFD,0x15};
+
 	Uint16 *command = SPIPORT_command;
 	Uint16 i;
-	  for(i=0; i<8; i++)
+	  for(i=0; i<10; i++)
 	  {
 		  SPI_TX(*command++);
 	  }
@@ -373,11 +375,12 @@ void SetSPIPORT(void)
 void CheckSUM(void)
 {
 
-	uchar SPIPORT_command[24] = {0x06,0x00,0x14,0x00,0x04,0x00,0x00,0x02,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
+	uchar SPIPORT_command[6] = {0x06,0x01,0x02,0x00,0xF0,0x04};
+
 	Uint16 CK_A = 0;
 	Uint16 CK_B = 0;
 	Uint16 i;
-	  for(i=0; i<24; i++)
+	  for(i=0; i<6; i++)
 	  {
 		  CK_A = CK_A+SPIPORT_command[i];
 		  CK_B = CK_B+CK_A;
@@ -394,43 +397,44 @@ void CheckSUM(void)
 //====================================================================//
 void GetGPRMC(uchar *store_add)
 {
-  uchar GPRMC_command[16] = {0xB5,0x62,0x06,0x01,0x08,0x00,0xF0,0x04,0x01,0x01,0x01,0x01,0x01,0x01,0x09,0x54};
-//	uchar GPRMC_command[16] = {0xB5,0x62,0x06,0x01,0x03,0x00,0xF0,0x04,0x00,0xFE,0x17};
-  uchar *command = GPRMC_command;
-  Uint16 i;
-  uchar header_found_flag = 0;
-  uchar temp;
-  DELAY_US(1000);
+	  uchar GPRMC_command[16] = {0xB5,0x62,0x06,0x01,0x08,0x00,0xF0,0x04,0x01,0x01,0x01,0x01,0x01,0x01,0x09,0x54};
+	  uchar *command = GPRMC_command;
+	  Uint16 i;
+	  uchar header_found_flag = 0;
+	  uchar temp;
 
-  for(i=0; i<11; i++)
-  {
-    GPSSPIExchangeData(*command++);
-  }
+	  for(i=0; i<16; i++)
+	  {
+		  SPI_RX(*command++);
+	  }
 
-  for(i=0; i<65535; i++)
-  {
-    if(header_found_flag)
-    {
-      temp = GPSSPIExchangeData(0xff);
-      if(temp != '$')                 // 找到"$GPRMC,"帧头
-      {
-        *store_add++ = temp;
-      }
-      else
-      {
-        break;
-      }
-    }
-    else
-    {
-      temp = (GPSSPIExchangeData(0xff));
-      if(temp == '$')
-      {
-        header_found_flag = 1;
-        *store_add++ = temp;
-      }
-    }
-  }
+	  for(i=0; i<65535; i++)
+	  {
+	    if(header_found_flag)
+	    {
+	      temp = SPI_RX(0xff);
+	      if(temp != '$')
+	      {
+//	    	  scia_xmit(temp);
+	        *store_add++ = temp;
+	      }
+	      else
+	      {
+	        break;
+	      }
+	    }
+	    else
+	    {
+	      temp = SPI_RX(0xff);
+	      if(temp == '$')
+	      {
+//	    	  scia_xmit(temp);
+	        header_found_flag = 1;
+	        *store_add++ = temp;
+	      }
+	    }
+	  }
+
   DELAY_US(1000);
 }
 
@@ -438,6 +442,19 @@ void GetGPRMC(uchar *store_add)
 // 实现功能：把gps模块的GPRMC信息解析为可识别的数据
 // 参    数：存放原始信息字符数组、存储可识别数据的结构体
 // 返 回 值：1: 解析GPRMC完毕，0: 没有进行解析，或数据无效
+//$GPRMC,(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12)*hh(CR)(LF)
+//(1) UTC时间，hhmmss（时分秒）
+//(2) 定位状态，A=有效定位，V=无效定位
+//(3) 纬度ddmm.mmmmm（度分）
+//(4) 纬度半球N（北半球）或S（南半球）
+//(5) 经度dddmm.mmmmm（度分）
+//(6) 经度半球E（东经）或W（西经）
+//(7) 地面速率（000.0~999.9节）
+//(8) 地面航向（000.0~359.9度，以真北方为参考基准）
+//(9) UTC日期，ddmmyy（日月年）
+//(10)磁偏角（000.0~180.0度，前导位数不足则补0）
+//(11) 磁偏角方向，E（东）或W（西）
+//(12) 模式指示（A=自主定位，D=差分，E=估算，N=数据无效）
 //====================================================================//
 uchar ParseGPRMC(uchar *line,GPS_INFO *GPS)
 {

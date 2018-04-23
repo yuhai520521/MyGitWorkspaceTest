@@ -33,6 +33,7 @@ void InitGpio(void)
    // By default, all are GPIO Inputs 
 
    GpioCtrlRegs.GPCMUX1.bit.GPIO75 = 0;     // GPIO75通用的IO
+   GpioCtrlRegs.GPCMUX2.bit.GPIO85 = 0;     // GPIO85通用的IO
    GpioCtrlRegs.GPCMUX2.bit.GPIO86 = 0;     // GPIO86通用的IO
    GpioCtrlRegs.GPCMUX2.bit.GPIO87 = 0;     // GPIO87通用的IO
 
@@ -51,12 +52,17 @@ void InitGpio(void)
    GpioCtrlRegs.GPBPUD.bit.GPIO53 = 0;      //开启上拉
 
    GpioCtrlRegs.GPCDIR.bit.GPIO75 = 1;      // GPIO75配置为输出口
+   GpioCtrlRegs.GPCDIR.bit.GPIO85 = 1;      // GPIO85配置为输出口
    GpioCtrlRegs.GPCDIR.bit.GPIO86 = 1;      // GPIO86配置为输出口
    GpioCtrlRegs.GPCDIR.bit.GPIO87 = 1;      // GPIO87配置为输出口
 
 
    EDIS;
-
+   GpioDataRegs.GPCSET.bit.GPIO75 = 0;     // 蜂鸣器关闭
+   GpioDataRegs.GPCSET.bit.GPIO85 = 1;     // LED1关闭
+   GpioDataRegs.GPCSET.bit.GPIO86 = 1;     // LED2关闭
+   GpioDataRegs.GPCCLEAR.bit.GPIO86 = 1;     // LED2打开
+   GpioDataRegs.GPCSET.bit.GPIO87 = 1;     // LED3关闭
 }	
 	
 //===========================================================================

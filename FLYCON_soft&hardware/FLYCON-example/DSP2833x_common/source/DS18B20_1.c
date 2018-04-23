@@ -15,8 +15,8 @@ void DQ_OUT(void)                           // GPIO85配置为输出口
 {
    EALLOW;
 
-   GpioCtrlRegs.GPCMUX2.bit.GPIO85 = 0;     // GPIO85通用的IO
-   GpioCtrlRegs.GPCDIR.bit.GPIO85 = 1;      // GPIO85配置为输出口
+   GpioCtrlRegs.GPAMUX2.bit.GPIO30 = 0;     // GPIO85通用的IO
+   GpioCtrlRegs.GPADIR.bit.GPIO30 = 1;      // GPIO85配置为输出口
 
    EDIS;
 
@@ -25,9 +25,9 @@ void DQ_IN(void)                           // GPIO85配置为输入口
 {
    EALLOW;
 
-   GpioCtrlRegs.GPCMUX2.bit.GPIO85 = 0;     // GPIO85通用的IO
-   GpioCtrlRegs.GPCDIR.bit.GPIO85 = 0;      //配置为输入
-   GpioCtrlRegs.GPCPUD.bit.GPIO85 = 0;      //开启上拉
+   GpioCtrlRegs.GPAMUX2.bit.GPIO30 = 0;     // GPIO85通用的IO
+   GpioCtrlRegs.GPADIR.bit.GPIO30 = 0;      //配置为输入
+   GpioCtrlRegs.GPAPUD.bit.GPIO30 = 0;      //开启上拉
 
    EDIS;
 
@@ -38,7 +38,7 @@ char DS18B20_Reset(void)
 	    unsigned char e;
         //-------拉低-----------------------------------
         DQ_OUT();
-        GpioDataRegs.GPCCLEAR.bit.GPIO85 = 1;    //拉低
+        GpioDataRegs.GPACLEAR.bit.GPIO30 = 1;    //拉低
 
         //-------等待480微秒以上----------------------------
         DELAY_US(600);          //只少等待480微秒以上
@@ -53,7 +53,7 @@ char DS18B20_Reset(void)
         e=0;
         while(1)
         {
-            if(GpioDataRegs.GPCDAT.bit.GPIO85==0)
+            if(GpioDataRegs.GPADAT.bit.GPIO30 == 0)
             {
                 e=1;
                 DELAY_US(120);
@@ -86,7 +86,7 @@ unsigned char DS18B20_ReadByte(void)
 
         //-------拉低总线5微秒--------------------------
         DQ_OUT();
-        GpioDataRegs.GPCCLEAR.bit.GPIO85 = 1;    //拉低
+        GpioDataRegs.GPACLEAR.bit.GPIO30 = 1;    //拉低
         DELAY_US(5);;        //等待5微秒
 
         //-------释放总线-----------------------------------
@@ -96,7 +96,7 @@ unsigned char DS18B20_ReadByte(void)
         DELAY_US(15);       //等待15微秒
 
         //-------检查该位是否为高-----------------------
-        if(GpioDataRegs.GPCDAT.bit.GPIO85)    //该位是否为高
+        if(GpioDataRegs.GPADAT.bit.GPIO30)    //该位是否为高
 
             retd|=0x80;     //是就将此位置高
             else
@@ -129,7 +129,7 @@ void DS18B20_WriteByte(unsigned char wrd)
         {
               //-------拉低总线5微秒--------------------------
             DQ_OUT();
-            GpioDataRegs.GPCCLEAR.bit.GPIO85 = 1;    //拉低
+            GpioDataRegs.GPACLEAR.bit.GPIO30 = 1;    //拉低
             DELAY_US(5);
 
               //-------拉高总线60微秒----------------------------------
@@ -140,7 +140,7 @@ void DS18B20_WriteByte(unsigned char wrd)
         {
               //-------拉低总线60微秒----------------------------------
             DQ_OUT();
-            GpioDataRegs.GPCCLEAR.bit.GPIO85 = 1;    //拉低
+            GpioDataRegs.GPACLEAR.bit.GPIO30 = 1;    //拉低
             DELAY_US(60);
 
               //-------拉高总线5微秒-----------------------------------

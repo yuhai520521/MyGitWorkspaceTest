@@ -33,7 +33,16 @@ C_SRCS += \
 ../DSP2833x_common/source/DSP2833x_SysCtrl.c \
 ../DSP2833x_common/source/DSP2833x_Xintf.c \
 ../DSP2833x_common/source/GPS.c \
-../DSP2833x_common/source/SBUS.c 
+../DSP2833x_common/source/SBUS.c \
+../DSP2833x_common/source/SD_SPI_Erase.c \
+../DSP2833x_common/source/SD_SPI_Initialization.c \
+../DSP2833x_common/source/SD_SPI_Read.c \
+../DSP2833x_common/source/SD_SPI_Registers.c \
+../DSP2833x_common/source/SD_SPI_Transmission.c \
+../DSP2833x_common/source/SD_SPI_Write.c \
+../DSP2833x_common/source/disk_sd.c \
+../DSP2833x_common/source/diskio.c \
+../DSP2833x_common/source/ff.c 
 
 OBJS += \
 ./DSP2833x_common/source/ADIS16488.obj \
@@ -63,7 +72,16 @@ OBJS += \
 ./DSP2833x_common/source/DSP2833x_Xintf.obj \
 ./DSP2833x_common/source/DSP2833x_usDelay.obj \
 ./DSP2833x_common/source/GPS.obj \
-./DSP2833x_common/source/SBUS.obj 
+./DSP2833x_common/source/SBUS.obj \
+./DSP2833x_common/source/SD_SPI_Erase.obj \
+./DSP2833x_common/source/SD_SPI_Initialization.obj \
+./DSP2833x_common/source/SD_SPI_Read.obj \
+./DSP2833x_common/source/SD_SPI_Registers.obj \
+./DSP2833x_common/source/SD_SPI_Transmission.obj \
+./DSP2833x_common/source/SD_SPI_Write.obj \
+./DSP2833x_common/source/disk_sd.obj \
+./DSP2833x_common/source/diskio.obj \
+./DSP2833x_common/source/ff.obj 
 
 ASM_DEPS += \
 ./DSP2833x_common/source/DSP2833x_ADC_cal.pp \
@@ -95,7 +113,16 @@ C_DEPS += \
 ./DSP2833x_common/source/DSP2833x_SysCtrl.pp \
 ./DSP2833x_common/source/DSP2833x_Xintf.pp \
 ./DSP2833x_common/source/GPS.pp \
-./DSP2833x_common/source/SBUS.pp 
+./DSP2833x_common/source/SBUS.pp \
+./DSP2833x_common/source/SD_SPI_Erase.pp \
+./DSP2833x_common/source/SD_SPI_Initialization.pp \
+./DSP2833x_common/source/SD_SPI_Read.pp \
+./DSP2833x_common/source/SD_SPI_Registers.pp \
+./DSP2833x_common/source/SD_SPI_Transmission.pp \
+./DSP2833x_common/source/SD_SPI_Write.pp \
+./DSP2833x_common/source/disk_sd.pp \
+./DSP2833x_common/source/diskio.pp \
+./DSP2833x_common/source/ff.pp 
 
 C_DEPS__QUOTED += \
 "DSP2833x_common\source\ADIS16488.pp" \
@@ -119,7 +146,16 @@ C_DEPS__QUOTED += \
 "DSP2833x_common\source\DSP2833x_SysCtrl.pp" \
 "DSP2833x_common\source\DSP2833x_Xintf.pp" \
 "DSP2833x_common\source\GPS.pp" \
-"DSP2833x_common\source\SBUS.pp" 
+"DSP2833x_common\source\SBUS.pp" \
+"DSP2833x_common\source\SD_SPI_Erase.pp" \
+"DSP2833x_common\source\SD_SPI_Initialization.pp" \
+"DSP2833x_common\source\SD_SPI_Read.pp" \
+"DSP2833x_common\source\SD_SPI_Registers.pp" \
+"DSP2833x_common\source\SD_SPI_Transmission.pp" \
+"DSP2833x_common\source\SD_SPI_Write.pp" \
+"DSP2833x_common\source\disk_sd.pp" \
+"DSP2833x_common\source\diskio.pp" \
+"DSP2833x_common\source\ff.pp" 
 
 OBJS__QUOTED += \
 "DSP2833x_common\source\ADIS16488.obj" \
@@ -149,7 +185,16 @@ OBJS__QUOTED += \
 "DSP2833x_common\source\DSP2833x_Xintf.obj" \
 "DSP2833x_common\source\DSP2833x_usDelay.obj" \
 "DSP2833x_common\source\GPS.obj" \
-"DSP2833x_common\source\SBUS.obj" 
+"DSP2833x_common\source\SBUS.obj" \
+"DSP2833x_common\source\SD_SPI_Erase.obj" \
+"DSP2833x_common\source\SD_SPI_Initialization.obj" \
+"DSP2833x_common\source\SD_SPI_Read.obj" \
+"DSP2833x_common\source\SD_SPI_Registers.obj" \
+"DSP2833x_common\source\SD_SPI_Transmission.obj" \
+"DSP2833x_common\source\SD_SPI_Write.obj" \
+"DSP2833x_common\source\disk_sd.obj" \
+"DSP2833x_common\source\diskio.obj" \
+"DSP2833x_common\source\ff.obj" 
 
 ASM_DEPS__QUOTED += \
 "DSP2833x_common\source\DSP2833x_ADC_cal.pp" \
@@ -181,7 +226,16 @@ C_SRCS__QUOTED += \
 "../DSP2833x_common/source/DSP2833x_SysCtrl.c" \
 "../DSP2833x_common/source/DSP2833x_Xintf.c" \
 "../DSP2833x_common/source/GPS.c" \
-"../DSP2833x_common/source/SBUS.c" 
+"../DSP2833x_common/source/SBUS.c" \
+"../DSP2833x_common/source/SD_SPI_Erase.c" \
+"../DSP2833x_common/source/SD_SPI_Initialization.c" \
+"../DSP2833x_common/source/SD_SPI_Read.c" \
+"../DSP2833x_common/source/SD_SPI_Registers.c" \
+"../DSP2833x_common/source/SD_SPI_Transmission.c" \
+"../DSP2833x_common/source/SD_SPI_Write.c" \
+"../DSP2833x_common/source/disk_sd.c" \
+"../DSP2833x_common/source/diskio.c" \
+"../DSP2833x_common/source/ff.c" 
 
 ASM_SRCS__QUOTED += \
 "../DSP2833x_common/source/DSP2833x_ADC_cal.asm" \

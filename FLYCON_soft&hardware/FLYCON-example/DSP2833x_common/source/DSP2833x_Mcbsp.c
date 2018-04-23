@@ -247,7 +247,7 @@ void InitMcbspaGpio(void)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO21 = 3;   // Asynch input GPIO21 (MDRA)
     GpioCtrlRegs.GPAQSEL2.bit.GPIO22 = 3;   // Asynch input GPIO22 (MCLKXA)
 
-    GpioDataRegs.GPACLEAR.bit.GPIO23 = 1;   // SD_CS拉低
+//    GpioDataRegs.GPACLEAR.bit.GPIO23 = 1;   // SD_CS拉低
 
 	EDIS;
 }
@@ -316,56 +316,66 @@ void init_mcbsp_spi()
 void init_mcbspa_spi()
 {
 
-//  复位McBSP
-    McbspaRegs.SPCR2.all=0x0000;		 // 开启时钟停止模式无延时
-	McbspaRegs.SPCR1.all=0x0000;		 // CPOL = 1, CPHA = 1 falling edge
 
-// 配置SPI模式3 CPOL = 1, CPHA = 1
-    McbspaRegs.SPCR1.bit.CLKSTP = 2;     // Together with CLKXP/CLKRP determines clocking scheme
-	McbspaRegs.PCR.bit.CLKXP = 1;		 // CPOL = 0, CPHA = 0 rising edge no delay
-//	McbspaRegs.PCR.bit.CLKRP = 1;        // Receive data on the rising edge of MCLKR
-	McbspaRegs.PCR.bit.CLKRP = 0;        // Receive data on the falling edge of MCLKR
+	//  复位McBSP
+	    McbspaRegs.SPCR2.all=0x0000;		// Reset FS generator, sample rate generator & transmitter
+		McbspaRegs.SPCR1.all=0x0000;		// Reset Receiver, Right justify word
 
-	McbspaRegs.PCR.bit.CLKXM = 1;
+	// 配置SPI模式0
+	//    McbspaRegs.SPCR1.bit.CLKSTP = 0 or 1;     // 关闭时钟停止模式
+	    McbspaRegs.SPCR1.bit.CLKSTP = 3;     // 开启时钟停止模式延时半周期
+//	    McbspaRegs.SPCR1.bit.CLKSTP = 2;     // 开启时钟停止模式无延时
+	    McbspaRegs.PCR.bit.CLKXP = 0;		 // CPOL = 0, CPHA = 1 rising edge
+		McbspaRegs.PCR.bit.CLKRP = 0;        // Receive data on the rising edge of MCLKR
+	//  配置主从模式
+		McbspaRegs.PCR.bit.CLKXM = 1;        //配置为主机模式
+	//  配置时钟为LSPCLK默认为150/4=37.5MHz
+		McbspaRegs.PCR.bit.SCLKME = 0;
+		McbspaRegs.SRGR2.bit.CLKSM = 1;
+	//  配置传输波特率150/4/(49+1)=750KHz
+		McbspaRegs.SRGR1.bit.CLKGDV= 49;
+	//  配置帧同步信号
+		McbspaRegs.PCR.bit.FSXM = 1;
+		McbspaRegs.SRGR2.bit.FSGM = 0; 	 	 // CLKSM=1, FPER = 1 CLKG periods
+	    McbspaRegs.PCR.bit.FSXP = 1;
+	//  配置数据格式
+	    McbspaRegs.RCR2.bit.RDATDLY = 1;      // FSX setup time 1 in master mode. 0 for slave mode (Receive)
+	    McbspaRegs.RCR2.bit.RCOMPAND = 0;      // 不用压扩任何长度数据，先接收MSB
+	//    McbspaRegs.RCR2.bit.RCOMPAND=1;      // 不用压扩8位长度数据，先接收LSB
+	//    McbspaRegs.RCR2.bit.RCOMPAND = 2;      // 用u-律压扩8位长度数据，先接收MSB
+	//    McbspaRegs.RCR2.bit.RCOMPAND = 3;      // 用A-律压扩8位长度数据，先接收MSB
 
-	McbspaRegs.PCR.bit.SCLKME = 0;
-	McbspaRegs.SRGR2.bit.CLKSM = 1;
+	    McbspaRegs.XCR2.bit.XDATDLY=1;      // FSX setup time 1 in master mode. 0 for slave mode (Transmit)
+	    McbspaRegs.XCR2.bit.XCOMPAND=0;      // 不用压扩任何长度数据，先发送MSB
+//	    McbspaRegs.XCR2.bit.XCOMPAND=1;      // 不用压扩8位长度数据，先发送LSB
+	//    McbspaRegs.XCR2.bit.RCOMPAND = 2;      // 用u-律压扩8位长度数据，先发送MSB
+	//    McbspaRegs.XCR2.bit.RCOMPAND = 3;      // 用A-律压扩8位长度数据，先发送MSB
 
-	McbspaRegs.SRGR1.bit.CLKGDV= 0x01;	     // Frame Width = 1 CLKG period, CLKGDV=16
-	McbspaRegs.PCR.bit.FSXM = 1;
-	McbspaRegs.SRGR2.bit.FSGM = 0; 	 	 // CLKSM=1, FPER = 1 CLKG periods
-    McbspaRegs.PCR.bit.FSXP = 1;
-    McbspaRegs.RCR2.bit.RDATDLY=1;      // FSX setup time 1 in master mode. 0 for slave mode (Receive)
-//    McbspaRegs.RCR2.bit.XCOMPAND=1;      // 先接收LSB 默认先接收MSB
-    McbspaRegs.XCR2.bit.XDATDLY=1;      // FSX setup time 1 in master mode. 0 for slave mode (Transmit)
-//    McbspaRegs.XCR2.bit.XCOMPAND=1;      // 先发送LSB 默认先发送MSB
+	  	McbspaRegs.SPCR1.bit.RJUST = 0;
+//		McbspaRegs.RCR1.bit.RWDLEN1=2;     // 16-bit word
+//	    McbspaRegs.XCR1.bit.XWDLEN1=2;     // 16-bit word
+		McbspaRegs.RCR1.bit.RWDLEN1=0;     // 8-bit word
+		McbspaRegs.XCR1.bit.XWDLEN1=0;     // 8-bit word
+	//	McbspaRegs.RCR1.bit.RWDLEN1=1;     // 12-bit word
+	//  McbspaRegs.XCR1.bit.XWDLEN1=1;     // 12-bit word
 
-  	McbspaRegs.SPCR1.bit.RJUST = 0;
-
-  	/* 传输数据位数 */
-	McbspaRegs.RCR1.bit.RWDLEN1=2;     // 16-bit word
-    McbspaRegs.XCR1.bit.XWDLEN1=2;     // 16-bit word
-//	McbspaRegs.RCR1.bit.RWDLEN1=0;     // 8-bit word
-//  McbspaRegs.XCR1.bit.XWDLEN1=0;     // 8-bit word
-//	McbspaRegs.RCR1.bit.RWDLEN1=1;     // 12-bit word
-//  McbspaRegs.XCR1.bit.XWDLEN1=1;     // 12-bit word
-//	McbspaRegs.RCR1.bit.RWDLEN1=3;     // 20-bit word
-//  McbspaRegs.XCR1.bit.XWDLEN1=3;     // 20-bit word
-//	McbspaRegs.RCR1.bit.RWDLEN1=4;     // 24-bit word
-//  McbspaRegs.XCR1.bit.XWDLEN1=4;     // 24-bit word
-//	McbspaRegs.RCR1.bit.RWDLEN1=5;     // 32-bit word
-//  McbspaRegs.XCR1.bit.XWDLEN1=5;     // 32-bit word
-    //  配置中断
-	McbspaRegs.SPCR1.bit.RINTM = 0;
-	McbspaRegs.MFFINT.bit.RINT = 1;
+	//	McbspaRegs.RCR1.bit.RWDLEN1=3;     // 20-bit word
+	//  McbspaRegs.XCR1.bit.XWDLEN1=3;     // 20-bit word
+	//	McbspaRegs.RCR1.bit.RWDLEN1=4;     // 24-bit word
+	//  McbspaRegs.XCR1.bit.XWDLEN1=4;     // 24-bit word
+	//	McbspaRegs.RCR1.bit.RWDLEN1=5;     // 32-bit word
+	//  McbspaRegs.XCR1.bit.XWDLEN1=5;     // 32-bit word
+	    //  配置中断
+		McbspaRegs.SPCR1.bit.RINTM = 0;
+		McbspaRegs.MFFINT.bit.RINT = 1;
 
 
-    McbspaRegs.SPCR2.bit.GRST=1;         // Enable the sample rate generator
-	delay_loop();                        // Wait at least 2 SRG clock cycles
-	McbspaRegs.SPCR2.bit.XRST=1;         // 使能发送器Release TX from Reset
-	McbspaRegs.SPCR1.bit.RRST=1;         // 使能接收器Release RX from Reset
-    McbspaRegs.SPCR2.bit.FRST=1;         // 使能帧同步Frame Sync Generator reset
-
+	    McbspaRegs.SPCR2.bit.GRST=1;         // Enable the sample rate generator
+		delay_loop();                        // Wait at least 2 SRG clock cycles
+		McbspaRegs.SPCR2.bit.XRST=1;         // 使能发送器Release TX from Reset
+		McbspaRegs.SPCR1.bit.RRST=1;         // 使能接收器Release RX from Reset
+	    McbspaRegs.SPCR2.bit.FRST=1;         // 使能帧同步Frame Sync Generator reset
+	    McbspaRegs.SPCR2.bit.SOFT=2;
 
 
 
@@ -443,12 +453,9 @@ void init_mcbspb_spi()
 
 void Mcbspa_SPI_TX(Uint16 a)
 {
-
-
-	while( McbspaRegs.SPCR2.bit.XRDY == 0 ) {}         // Master waits until RX data is ready
-	McbspaRegs.DXR1.all = a;
+   	while( McbspaRegs.SPCR2.bit.XRDY == 0 ) {}         // Master waits until TX data is ready
+	McbspaRegs.DXR1.all = a<<8;
     McbspaRegs.DRR1.all = McbspaRegs.DRR1.all;
-
 }
 
 
@@ -467,7 +474,7 @@ Uint16 Mcbspa_SPI_RX(void)
 void Mcbspb_SPI_TX(Uint16 a)
 {
 
-	while( McbspbRegs.SPCR2.bit.XRDY == 0 ) {}         // Master waits until RX data is ready
+	while( McbspbRegs.SPCR2.bit.XRDY == 0 ) {}         // Master waits until TX data is ready
 	 McbspbRegs.DXR1.all = a;
     McbspbRegs.DRR1.all = McbspbRegs.DRR1.all;         // 清除标志位
 

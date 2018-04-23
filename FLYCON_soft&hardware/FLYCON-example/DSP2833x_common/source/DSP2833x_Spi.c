@@ -104,32 +104,12 @@ void InitSpiaGpio()
 
         GpioDataRegs.GPBSET.bit.GPIO57 = 1;   // GPS_CS拉高
         DELAY_US(1000);
-//        GpioDataRegs.GPBCLEAR.bit.GPIO57 = 1;   // GPS_CS拉低
-//        DELAY_US(1000);
-
     EDIS;
 }
 
 void init_spi(void)
 {
-//	SpiaRegs.SPICCR.bit.SPISWRESET = 0 ;	    // SPI软件复位
-//	SpiaRegs.SPICCR.bit.CLKPOLARITY = 0;   // 接收发送均在上升沿
-//	SpiaRegs.SPICTL.bit.CLK_PHASE = 0;      // SPI时钟模式配置为无延时上升沿
-//	SpiaRegs.SPICTL.bit.MASTER_SLAVE = 1;   // 配置为主机模式
-//	SpiaRegs.SPICTL.bit.TALK = 1;            // 允许发送
-//	SpiaRegs.SPICTL.bit.SPIINTENA = 1;       // SPI中断使能
-//
-//	SpiaRegs.SPICCR.bit.SPICHAR = 0x09;    // 字符长度控制位 0x00~0x0f 对应字符长度1-16位
-//	SpiaRegs.SPIBRR = 36;                  // 配置时钟频率为37.5/(36+1)=1M
-////	SpiaRegs.SPIFFTX.all = 0xe000;         // 使能SPI发送FIFO
-////	SpiaRegs.SPIFFRX.all = 0x6000;         // 使能SPI接收FIFO
-//	SpiaRegs.SPICCR.bit.SPISWRESET = 1 ;	    // SPI从复位中释放
-//    SpiaRegs.SPIFFTX.all=0xE04F;
-//    SpiaRegs.SPIFFTX.bit.TXFFINTCLR=1;
-//    SpiaRegs.SPIFFRX.all=0x204F;
-//    SpiaRegs.SPIFFCT.all=0x0000;
-//    SpiaRegs.SPIFFTX.bit.TXFIFO=1;
-//    SpiaRegs.SPIFFRX.bit.RXFIFORESET=1;
+
 	SpiaRegs.SPICCR.bit.SPISWRESET = 0;  //Reset on
 
 	SpiaRegs.SPICCR.all =0x0007;	    //rising edge, 8-bit char bits
@@ -154,22 +134,8 @@ Uint16 GPSSPIExchangeData(Uint16 byte)
   	SpiaRegs.SPITXBUF = byte<<8;         			 //Transmit Byte
 	while(SpiaRegs.SPISTS.bit.BUFFULL_FLAG != 1) {}	 //Wait until the RXBUF has received last bit
 	  	return (SpiaRegs.SPIRXBUF);			     //Read Byte from RXBUF and return
-
-//	  	 while(SpiaRegs.SPISTS.bit.BUFFULL_FLAG);
-//	     SpiaRegs.SPITXBUF = byte;
-//	     while(SpiaRegs.SPISTS.bit.INT_FLAG != 1) {}
-//	     return (SpiaRegs.SPIRXBUF);
 }
 
-//Uint16 GPSSPIExchangeData(Uint16 TxData)
-//{
-//
-////	SpiaRegs.SPITXBUF = (TxData|0x8000)<<8 ;       //发送一个byte
-//	SpiaRegs.SPITXBUF = (TxData);
-//	while(SpiaRegs.SPISTS.bit.INT_FLAG != 1){}
-//	return ((SpiaRegs.SPIRXBUF)&0x00ff);          //返回收到的数据
-//
-//}
 void SPI_TX(Uint16 byte)
 {
     SpiaRegs.SPITXBUF = byte<<8;

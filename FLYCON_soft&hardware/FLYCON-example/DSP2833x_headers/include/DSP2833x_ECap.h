@@ -141,6 +141,11 @@ extern volatile struct ECAP_REGS ECap6Regs;
 void InitECAP();
 void SetCap5();
 void SetCap6();
+void ECap5_Cal(void);
+void ECap6_Cal(void);
+interrupt void ECAP5_CTROVF_Isr(void);
+interrupt void ECAP6_CTROVF_Isr(void);
+
 
 #ifdef __cplusplus
 }

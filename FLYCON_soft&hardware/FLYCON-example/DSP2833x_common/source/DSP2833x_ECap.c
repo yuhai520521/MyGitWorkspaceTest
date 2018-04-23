@@ -253,6 +253,36 @@ void InitECap6Gpio(void)
 }
 #endif // endif DSP28_ECAP6
 
+#define EC_RISING     0           //上升沿电平值
+#define EC_FALLING    1            //下降沿电平值
+#define EC_ABS_MODE   0            //在CAPx事件中不重置计数器
+#define EC_ENABLE     1            //使能在捕获事件中加载CAP1-4寄存器的时间
+#define EC_DIV1       00000      //输入信号分频选择 不分频
+#define EC_CAP_MODE   0            //ECAP工作于捕获工作模式
+#define EC_CONTINUOUS 0            //0为连续模式  1为单次模式
+#define EC_SYNCO_DIS  2             //同步输出选择：  10、11屏蔽同步信号输出
+#define EC_DISABLE    0            //屏蔽同步输入操作
+#define EC_RUN        1            //1计数器启动    0计数器停止
+
+
+#define EC_RISING     0           //上升沿电平值
+#define EC_FALLING    1            //下降沿电平值
+#define EC_ABS_MODE   0            //在CAPx事件中不重置计数器
+#define EC_ENABLE     1            //使能在捕获事件中加载CAP1-4寄存器的时间
+#define EC_DIV1       00000      //输入信号分频选择 不分频
+#define EC_CAP_MODE   0            //ECAP工作于捕获工作模式
+#define EC_CONTINUOUS 0            //0为连续模式  1为单次模式
+#define EC_SYNCO_DIS  2             //同步输出选择：  10、11屏蔽同步信号输出
+#define EC_DISABLE    0            //屏蔽同步输入操作
+#define EC_RUN        1            //1计数器启动    0计数器停止
+#define EC_STOP       0            //1计数器启动    0计数器停止
+
+Uint16 ECap5TsctrOverflowCnt = 0;
+Uint16 Ecap6TsctrOverflowCnt = 0;
+//float fre = 0.0,duty = 0.0;
+//Uint16 OvfCnt1 = 0,OvfCnt2 = 0,OvfCnt3 = 0;
+
+
 void InitECAP()
 {
 
@@ -262,116 +292,148 @@ void InitECAP()
 //    SysCtrlRegs.PCLKCR1.bit.ECAP4ENCLK = 1;//使能eCAP4
     SysCtrlRegs.PCLKCR1.bit.ECAP5ENCLK = 1;//使能eCAP5
     SysCtrlRegs.PCLKCR1.bit.ECAP6ENCLK = 1;//使能eCAP6
-    IER |= M_INT4;//
-//    PieCtrlRegs.PIEIER4.bit.INTx1 = 1;
-    ECap1Regs.ECEINT.all = 0x0000;             // Disable all capture interrupts
-    ECap1Regs.ECCLR.all = 0xFFFF;              // Clear all CAP interrupt flags
-    ECap1Regs.ECCTL1.bit.CAPLDEN = 0;          // Disable CAP1-CAP4 register loads
-    ECap1Regs.ECCTL2.bit.TSCTRSTOP = 0;        // Make sure the counter is stopped
+
     SetCap5();
     SetCap6();
 
 }
-#define EC_RISING     0           //上升沿电平值
-#define EC_FALLING    1            //下降沿电平值
-#define EC_ABS_MODE   0            //在CAPx事件中不重置计数器
-#define EC_ENABLE     1            //使能在捕获事件中加载CAP1-4寄存器的时间
-#define EC_DIV1       00000      //输入信号分频选择 不分频
-#define EC_CAP_MODE   0            //ECAP工作于捕获工作模式
-#define EC_CONTINUOUS 0            //0为连续模式  1为单次模式
-#define EC_SYNCO_DIS  2             //同步输出选择：  10、11屏蔽同步信号输出
-#define EC_DISABLE    0            //屏蔽同步输入操作
-#define EC_RUN        1            //1计数器启动    0计数器停止
 
-
-#define EC_RISING     0           //上升沿电平值
-#define EC_FALLING    1            //下降沿电平值
-#define EC_ABS_MODE   0            //在CAPx事件中不重置计数器
-#define EC_ENABLE     1            //使能在捕获事件中加载CAP1-4寄存器的时间
-#define EC_DIV1       00000      //输入信号分频选择 不分频
-#define EC_CAP_MODE   0            //ECAP工作于捕获工作模式
-#define EC_CONTINUOUS 0            //0为连续模式  1为单次模式
-#define EC_SYNCO_DIS  2             //同步输出选择：  10、11屏蔽同步信号输出
-#define EC_DISABLE    0            //屏蔽同步输入操作
-#define EC_RUN        1            //1计数器启动    0计数器停止
 
 void SetCap5()
 {
+	// ECap模式
+	ECap5Regs.ECEINT.all = 0x0000;                         //关闭所有 CAP 中断
+	ECap5Regs.ECCTL2.bit.TSCTRSTOP = EC_STOP;             //停止 CAP 计数器
+	ECap5Regs.ECCTL1.bit.CAPLDEN = EC_ENABLE;             //使能事件捕捉时捕捉寄存器装载计数器值
     ECap5Regs.ECCTL1.bit.CAP1POL = EC_RISING;             //一级事件捕捉上升沿
-    ECap5Regs.ECCTL1.bit.CAP2POL = EC_RISING;             //二级事件捕捉上升沿
+    ECap5Regs.ECCTL1.bit.CAP2POL = EC_FALLING;             //二级事件捕捉上升沿
     ECap5Regs.ECCTL1.bit.CAP3POL = EC_RISING;             //三级事件捕捉上升沿
-    ECap5Regs.ECCTL1.bit.CAP4POL = EC_RISING;             //四级事件捕捉上升沿
-    ECap5Regs.ECCTL1.bit.CTRRST1 = EC_ABS_MODE;         //一级事件捕捉后不清零计数器
-    ECap5Regs.ECCTL1.bit.CTRRST2 = EC_ABS_MODE;         //二级事件捕捉后不清零计数器
-    ECap5Regs.ECCTL1.bit.CTRRST3 = EC_ABS_MODE;         //三级事件捕捉后不清零计数器
-    ECap5Regs.ECCTL1.bit.CTRRST4 = EC_ABS_MODE;         //四级事件捕捉后不清零计数器
-    ECap5Regs.ECCTL1.bit.CAPLDEN = EC_ENABLE;             //使能事件捕捉时捕捉寄存器装载计数器值
-    ECap5Regs.ECCTL1.bit.PRESCALE = EC_DIV1;             //对外部信号不分频
 
     ECap5Regs.ECCTL2.bit.CAP_APWM = EC_CAP_MODE;         //捕捉模式ECAP
-    ECap5Regs.ECCTL2.bit.CONT_ONESHT = EC_CONTINUOUS;     //连续模式
-    ECap5Regs.ECCTL2.bit.SYNCO_SEL = EC_SYNCO_DIS;        //屏蔽同步信号输出
-    ECap5Regs.ECCTL2.bit.SYNCI_EN = EC_DISABLE;            //屏蔽同步输入操作
-    ECap5Regs.ECEINT.all=0x0000;                         //关闭所有 CAP 中断
-    ECap5Regs.ECCLR.all=0xFFFF;                         //清除所有中断标志位
+    ECap5Regs.ECCTL2.bit.STOP_WRAP = 2;                  // 捕获三次后停止
+    ECap5Regs.ECCTL2.bit.CONT_ONESHT = 1;                // 单次模式
+    ECap5Regs.ECCLR.all=0xFFFF;                           //清除所有中断标志位
+    ECap5Regs.ECEINT.bit.CTROVF = 1;
+    ECap5Regs.ECCTL2.bit.REARM = 1;                      // 复位并启动MOD4计数器
     ECap5Regs.ECCTL2.bit.TSCTRSTOP = EC_RUN;             //启动 CAP 计数器
-    ECap5Regs.ECEINT.bit.CEVT4=1;                         //使能四级事件中断，即当发生第四次捕捉时进入中断
+
+	// PWM模式
+//	ECap5Regs.ECEINT.all=0x0000;                         //关闭所有 CAP 中断
+//	ECap5Regs.ECCTL2.bit.TSCTRSTOP = EC_STOP;             //启动 CAP 计数器
+//	ECap5Regs.ECCTL2.bit.CAP_APWM = 1;         //捕捉模式ECAP
+//	ECap5Regs.ECCTL2.bit.APWMPOL = 0;
+//	ECap5Regs.CAP1 = (Uint32)(150.0e6/freset);
+//	ECap5Regs.CAP2 = (Uint32)(dutyset*ECap5Regs.CAP1);
+//    ECap5Regs.ECCTL2.bit.TSCTRSTOP = EC_RUN;             //启动 CAP 计数器
+
+
 }
 
-interrupt void ECap5_INT_ISR(void)    // ECAP-5
+
+void ECap5_Cal(void)    // ECAP-5
 {
   // Insert ISR Code here
-     Uint32 t1,t2,t3,t4,T1,T2;
-
+	float fre = 0.0,duty = 0.0;
+	Uint16 OvfCnt1 = 0,OvfCnt2 = 0,OvfCnt3 = 0;
+     Uint32 t1,t2,t3;
+     while(ECap5Regs.ECFLG.bit.CEVT1!=1){}
      t1 = ECap5Regs.CAP1;
+     OvfCnt1 = ECap5TsctrOverflowCnt;
+     while(ECap5Regs.ECFLG.bit.CEVT2!=1){}
      t2 = ECap5Regs.CAP2;
+     OvfCnt2 = ECap5TsctrOverflowCnt;
+     while(ECap5Regs.ECFLG.bit.CEVT3!=1){}
      t3 = ECap5Regs.CAP3;
-     t4 = ECap5Regs.CAP4;
-     T1 = t2-t1;
-     T2 = t4-t3;
-  // To receive more interrupts from this PIE group, acknowledge this interrupt
-     PieCtrlRegs.PIEACK.all = PIEACK_GROUP4;
-     ECap5Regs.ECCLR.all=0xFFFF;                //clare all flag
+     OvfCnt3 = ECap5TsctrOverflowCnt;
+
+     fre = 150.0e6/(4294967296.0L*(OvfCnt3-OvfCnt1)+t3-t1);
+     duty = (4294967296.0L*(OvfCnt2-OvfCnt1)+t2-t1)/(4294967296.0L*(OvfCnt3-OvfCnt1)+t3-t1);
+     ECap5TsctrOverflowCnt = 0;
+
+     ECap5Regs.ECCLR.bit.CEVT1 = 1;
+     ECap5Regs.ECCLR.bit.CEVT2 = 1;
+     ECap5Regs.ECCLR.bit.CEVT3 = 1;
+     ECap5Regs.ECCTL2.bit.REARM = 1;
+
 }
+
 
 void SetCap6()
 {
+	// ECap模式
+	ECap6Regs.ECEINT.all = 0x0000;                         //关闭所有 CAP 中断
+	ECap6Regs.ECCTL2.bit.TSCTRSTOP = EC_STOP;             //停止 CAP 计数器
+	ECap6Regs.ECCTL1.bit.CAPLDEN = EC_ENABLE;             //使能事件捕捉时捕捉寄存器装载计数器值
     ECap6Regs.ECCTL1.bit.CAP1POL = EC_RISING;             //一级事件捕捉上升沿
-    ECap6Regs.ECCTL1.bit.CAP2POL = EC_RISING;             //二级事件捕捉上升沿
+    ECap6Regs.ECCTL1.bit.CAP2POL = EC_FALLING;             //二级事件捕捉上升沿
     ECap6Regs.ECCTL1.bit.CAP3POL = EC_RISING;             //三级事件捕捉上升沿
-    ECap6Regs.ECCTL1.bit.CAP4POL = EC_RISING;             //四级事件捕捉上升沿
-    ECap6Regs.ECCTL1.bit.CTRRST1 = EC_ABS_MODE;         //一级事件捕捉后不清零计数器
-    ECap6Regs.ECCTL1.bit.CTRRST2 = EC_ABS_MODE;         //二级事件捕捉后不清零计数器
-    ECap6Regs.ECCTL1.bit.CTRRST3 = EC_ABS_MODE;         //三级事件捕捉后不清零计数器
-    ECap6Regs.ECCTL1.bit.CTRRST4 = EC_ABS_MODE;         //四级事件捕捉后不清零计数器
-    ECap6Regs.ECCTL1.bit.CAPLDEN = EC_ENABLE;             //使能事件捕捉时捕捉寄存器装载计数器值
-    ECap6Regs.ECCTL1.bit.PRESCALE = EC_DIV1;             //对外部信号不分频
 
     ECap6Regs.ECCTL2.bit.CAP_APWM = EC_CAP_MODE;         //捕捉模式ECAP
-    ECap6Regs.ECCTL2.bit.CONT_ONESHT = EC_CONTINUOUS;     //连续模式
-    ECap6Regs.ECCTL2.bit.SYNCO_SEL = EC_SYNCO_DIS;        //屏蔽同步信号输出
-    ECap6Regs.ECCTL2.bit.SYNCI_EN = EC_DISABLE;            //屏蔽同步输入操作
-    ECap6Regs.ECEINT.all=0x0000;                         //关闭所有 CAP 中断
-    ECap6Regs.ECCLR.all=0xFFFF;                         //清除所有中断标志位
+    ECap6Regs.ECCTL2.bit.STOP_WRAP = 2;                  // 捕获三次后停止
+    ECap6Regs.ECCTL2.bit.CONT_ONESHT = 1;                // 单次模式
+    ECap6Regs.ECCLR.all=0xFFFF;                           //清除所有中断标志位
+    ECap6Regs.ECEINT.bit.CTROVF = 1;
+    ECap6Regs.ECCTL2.bit.REARM = 1;                      // 复位并启动MOD4计数器
     ECap6Regs.ECCTL2.bit.TSCTRSTOP = EC_RUN;             //启动 CAP 计数器
-    ECap6Regs.ECEINT.bit.CEVT4=1;                         //使能四级事件中断，即当发生第四次捕捉时进入中断
+
+	// PWM模式
+//	ECap6Regs.ECEINT.all=0x0000;                         //关闭所有 CAP 中断
+//	ECap6Regs.ECCTL2.bit.TSCTRSTOP = EC_STOP;             //启动 CAP 计数器
+//	ECap6Regs.ECCTL2.bit.CAP_APWM = 1;         //捕捉模式ECAP
+//	ECap6Regs.ECCTL2.bit.APWMPOL = 0;
+//	ECap6Regs.CAP1 = (Uint32)(150.0e6/freset);
+//	ECap6Regs.CAP2 = (Uint32)(dutyset*ECap5Regs.CAP1);
+//    ECap6Regs.ECCTL2.bit.TSCTRSTOP = EC_RUN;             //启动 CAP 计数器
+
 }
 
-interrupt void ECap6_INT_ISR(void)    // ECAP-6
+
+void ECap6_Cal(void)    // ECAP-6
 {
   // Insert ISR Code here
-     Uint32 t1,t2,t3,t4,T1,T2;
-
+	float fre = 0.0,duty = 0.0;
+	Uint16 OvfCnt1 = 0,OvfCnt2 = 0,OvfCnt3 = 0;
+     Uint32 t1,t2,t3;
+     while(ECap6Regs.ECFLG.bit.CEVT1!=1){}
      t1 = ECap6Regs.CAP1;
+     OvfCnt1 = Ecap6TsctrOverflowCnt;
+     while(ECap6Regs.ECFLG.bit.CEVT2!=1){}
      t2 = ECap6Regs.CAP2;
+     OvfCnt2 = Ecap6TsctrOverflowCnt;
+     while(ECap6Regs.ECFLG.bit.CEVT3!=1){}
      t3 = ECap6Regs.CAP3;
-     t4 = ECap6Regs.CAP4;
-     T1 = t2-t1;
-     T2 = t4-t3;
-  // To receive more interrupts from this PIE group, acknowledge this interrupt
-     PieCtrlRegs.PIEACK.all = PIEACK_GROUP4;
-     ECap6Regs.ECCLR.all=0xFFFF;                //clare all flag
+     OvfCnt3 = Ecap6TsctrOverflowCnt;
+
+     fre = 150.0e6/(4294967296.0L*(OvfCnt3-OvfCnt1)+t3-t1);
+     duty = (4294967296.0L*(OvfCnt2-OvfCnt1)+t2-t1)/(4294967296.0L*(OvfCnt3-OvfCnt1)+t3-t1);
+     Ecap6TsctrOverflowCnt = 0;
+
+     ECap6Regs.ECCLR.bit.CEVT1 = 1;
+     ECap6Regs.ECCLR.bit.CEVT2 = 1;
+     ECap6Regs.ECCLR.bit.CEVT3 = 1;
+     ECap6Regs.ECCTL2.bit.REARM = 1;
+
 }
+
+interrupt void ECAP5_CTROVF_Isr(void)
+{
+	ECap5TsctrOverflowCnt++;
+	ECap5Regs.ECCLR.bit.CTROVF = 1;
+	ECap5Regs.ECCLR.bit.INT = 1;
+	PieCtrlRegs.PIEACK.all = PIEACK_GROUP4;
+
+}
+
+interrupt void ECAP6_CTROVF_Isr(void)
+{
+	Ecap6TsctrOverflowCnt++;
+	ECap6Regs.ECCLR.bit.CTROVF = 1;
+	ECap6Regs.ECCLR.bit.INT = 1;
+	PieCtrlRegs.PIEACK.all = PIEACK_GROUP4;
+
+}
+
+
 
 //===========================================================================
 // End of file.

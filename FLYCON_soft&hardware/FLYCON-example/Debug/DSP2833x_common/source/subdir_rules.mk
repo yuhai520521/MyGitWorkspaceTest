@@ -199,4 +199,67 @@ DSP2833x_common/source/SBUS.obj: ../DSP2833x_common/source/SBUS.c $(GEN_OPTS) $(
 	@echo 'Finished building: $<'
 	@echo ' '
 
+DSP2833x_common/source/SD_SPI_Erase.obj: ../DSP2833x_common/source/SD_SPI_Erase.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/SD_SPI_Erase.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/SD_SPI_Initialization.obj: ../DSP2833x_common/source/SD_SPI_Initialization.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/SD_SPI_Initialization.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/SD_SPI_Read.obj: ../DSP2833x_common/source/SD_SPI_Read.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/SD_SPI_Read.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/SD_SPI_Registers.obj: ../DSP2833x_common/source/SD_SPI_Registers.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/SD_SPI_Registers.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/SD_SPI_Transmission.obj: ../DSP2833x_common/source/SD_SPI_Transmission.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/SD_SPI_Transmission.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/SD_SPI_Write.obj: ../DSP2833x_common/source/SD_SPI_Write.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/SD_SPI_Write.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/disk_sd.obj: ../DSP2833x_common/source/disk_sd.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/disk_sd.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/diskio.obj: ../DSP2833x_common/source/diskio.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/diskio.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+DSP2833x_common/source/ff.obj: ../DSP2833x_common/source/ff.c $(GEN_OPTS) $(GEN_HDRS)
+	@echo 'Building file: $<'
+	@echo 'Invoking: C2000 Compiler'
+	"c:/ti/ccsv6/tools/compiler/c2000_6.2.7/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include" --include_path="F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_headers/include" -g --diag_warning=225 --display_error_number --diag_wrap=off --preproc_with_compile --preproc_dependency="DSP2833x_common/source/ff.pp" --obj_directory="DSP2833x_common/source" $(GEN_OPTS__FLAG) "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
 

@@ -29,6 +29,7 @@ DSP2833x_common/source/ADIS16488.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware
 DSP2833x_common/source/ADIS16488.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/adis16488.h
 DSP2833x_common/source/ADIS16488.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/GPS.h
 DSP2833x_common/source/ADIS16488.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SBUS.h
+DSP2833x_common/source/ADIS16488.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SD.h
 DSP2833x_common/source/ADIS16488.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/DSP2833x_DefaultISR.h
 DSP2833x_common/source/ADIS16488.obj: c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/stdbool.h
 DSP2833x_common/source/ADIS16488.obj: c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/yvals.h
@@ -66,6 +67,7 @@ F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/includ
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/adis16488.h: 
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/GPS.h: 
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SBUS.h: 
+F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SD.h: 
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/DSP2833x_DefaultISR.h: 
 c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/stdbool.h: 
 c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/yvals.h: 

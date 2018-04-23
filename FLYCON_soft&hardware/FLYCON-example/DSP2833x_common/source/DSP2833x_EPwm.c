@@ -204,7 +204,7 @@ void EPwm1Setup()
 	// 配置CC模块
 	EPwm1Regs.CMPCTL.all=0x00;        // 影子装载模式
 	EPwm1Regs.CMPA.half.CMPA =SQ*3/40;
-	EPwm1Regs.CMPB=0;
+	EPwm1Regs.CMPB=SQ*3/40;
 	// 配置AQ模块
 	EPwm1Regs.AQCTLA.bit.CAU = 0x1;
 	EPwm1Regs.AQCTLA.bit.CAD = 0x3;

@@ -35,6 +35,7 @@ main.obj: c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/_lock.h
 main.obj: c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/math.h
 main.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/GPS.h
 main.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SBUS.h
+main.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SD.h
 main.obj: F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/DSP2833x_DefaultISR.h
 main.obj: c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/math.h
 
@@ -73,5 +74,6 @@ c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/_lock.h:
 c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/math.h: 
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/GPS.h: 
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SBUS.h: 
+F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/SD.h: 
 F:/MyGitWorkspaceTest/FLYCON_soft&hardware/FLYCON-example/DSP2833x_common/include/DSP2833x_DefaultISR.h: 
 c:/ti/ccsv6/tools/compiler/c2000_6.2.7/include/math.h: 

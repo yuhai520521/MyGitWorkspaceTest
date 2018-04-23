@@ -38,6 +38,15 @@ $(GEN_CMDS__FLAG) \
 "./DSP2833x_common/source/DSP2833x_usDelay.obj" \
 "./DSP2833x_common/source/GPS.obj" \
 "./DSP2833x_common/source/SBUS.obj" \
+"./DSP2833x_common/source/SD_SPI_Erase.obj" \
+"./DSP2833x_common/source/SD_SPI_Initialization.obj" \
+"./DSP2833x_common/source/SD_SPI_Read.obj" \
+"./DSP2833x_common/source/SD_SPI_Registers.obj" \
+"./DSP2833x_common/source/SD_SPI_Transmission.obj" \
+"./DSP2833x_common/source/SD_SPI_Write.obj" \
+"./DSP2833x_common/source/disk_sd.obj" \
+"./DSP2833x_common/source/diskio.obj" \
+"./DSP2833x_common/source/ff.obj" \
 "../28335_RAM_lnk.cmd" \
 "../DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd" \
 "../DSP2833x_common/lib/IQmath.lib" \
@@ -183,9 +192,10 @@ FLYCON-example.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)$(BIN_OUTPUTS__QUOTED)
-	-$(RM) "main.pp" "DSP2833x_headers\source\DSP2833x_GlobalVariableDefs.pp" "DSP2833x_common\source\ADIS16488.pp" "DSP2833x_common\source\DS18B20_1.pp" "DSP2833x_common\source\DSP2833x_Adc.pp" "DSP2833x_common\source\DSP2833x_CpuTimers.pp" "DSP2833x_common\source\DSP2833x_DMA.pp" "DSP2833x_common\source\DSP2833x_DefaultIsr.pp" "DSP2833x_common\source\DSP2833x_ECan.pp" "DSP2833x_common\source\DSP2833x_ECap.pp" "DSP2833x_common\source\DSP2833x_EPwm.pp" "DSP2833x_common\source\DSP2833x_EQep.pp" "DSP2833x_common\source\DSP2833x_Gpio.pp" "DSP2833x_common\source\DSP2833x_I2C.pp" "DSP2833x_common\source\DSP2833x_Mcbsp.pp" "DSP2833x_common\source\DSP2833x_MemCopy.pp" "DSP2833x_common\source\DSP2833x_PieCtrl.pp" "DSP2833x_common\source\DSP2833x_PieVect.pp" "DSP2833x_common\source\DSP2833x_Sci.pp" "DSP2833x_common\source\DSP2833x_Spi.pp" "DSP2833x_common\source\DSP2833x_SysCtrl.pp" "DSP2833x_common\source\DSP2833x_Xintf.pp" "DSP2833x_common\source\GPS.pp" "DSP2833x_common\source\SBUS.pp" 
+	-$(RM) "main.pp" "DSP2833x_headers\source\DSP2833x_GlobalVariableDefs.pp" "DSP2833x_common\source\ADIS16488.pp" "DSP2833x_common\source\DS18B20_1.pp" "DSP2833x_common\source\DSP2833x_Adc.pp" "DSP2833x_common\source\DSP2833x_CpuTimers.pp" "DSP2833x_common\source\DSP2833x_DMA.pp" "DSP2833x_common\source\DSP2833x_DefaultIsr.pp" "DSP2833x_common\source\DSP2833x_ECan.pp" "DSP2833x_common\source\DSP2833x_ECap.pp" "DSP2833x_common\source\DSP2833x_EPwm.pp" "DSP2833x_common\source\DSP2833x_EQep.pp" "DSP2833x_common\source\DSP2833x_Gpio.pp" "DSP2833x_common\source\DSP2833x_I2C.pp" "DSP2833x_common\source\DSP2833x_Mcbsp.pp" "DSP2833x_common\source\DSP2833x_MemCopy.pp" "DSP2833x_common\source\DSP2833x_PieCtrl.pp" "DSP2833x_common\source\DSP2833x_PieVect.pp" "DSP2833x_common\source\DSP2833x_Sci.pp" "DSP2833x_common\source\DSP2833x_Spi.pp" "DSP2833x_common\source\DSP2833x_SysCtrl.pp" "DSP2833x_common\source\DSP2833x_Xintf.pp" "DSP2833x_common\source\GPS.pp" "DSP2833x_common\source\SBUS.pp" "DSP2833x_common\source\SD_SPI_Erase.pp" 
+	-$(RM) "DSP2833x_common\source\SD_SPI_Initialization.pp" "DSP2833x_common\source\SD_SPI_Read.pp" "DSP2833x_common\source\SD_SPI_Registers.pp" "DSP2833x_common\source\SD_SPI_Transmission.pp" "DSP2833x_common\source\SD_SPI_Write.pp" "DSP2833x_common\source\disk_sd.pp" "DSP2833x_common\source\diskio.pp" "DSP2833x_common\source\ff.pp" 
 	-$(RM) "main.obj" "DSP2833x_headers\source\DSP2833x_GlobalVariableDefs.obj" "DSP2833x_common\source\ADIS16488.obj" "DSP2833x_common\source\DS18B20_1.obj" "DSP2833x_common\source\DSP2833x_ADC_cal.obj" "DSP2833x_common\source\DSP2833x_Adc.obj" "DSP2833x_common\source\DSP2833x_CSMPasswords.obj" "DSP2833x_common\source\DSP2833x_CodeStartBranch.obj" "DSP2833x_common\source\DSP2833x_CpuTimers.obj" "DSP2833x_common\source\DSP2833x_DBGIER.obj" "DSP2833x_common\source\DSP2833x_DMA.obj" "DSP2833x_common\source\DSP2833x_DefaultIsr.obj" "DSP2833x_common\source\DSP2833x_DisInt.obj" "DSP2833x_common\source\DSP2833x_ECan.obj" "DSP2833x_common\source\DSP2833x_ECap.obj" "DSP2833x_common\source\DSP2833x_EPwm.obj" "DSP2833x_common\source\DSP2833x_EQep.obj" "DSP2833x_common\source\DSP2833x_Gpio.obj" "DSP2833x_common\source\DSP2833x_I2C.obj" "DSP2833x_common\source\DSP2833x_Mcbsp.obj" "DSP2833x_common\source\DSP2833x_MemCopy.obj" "DSP2833x_common\source\DSP2833x_PieCtrl.obj" "DSP2833x_common\source\DSP2833x_PieVect.obj" 
-	-$(RM) "DSP2833x_common\source\DSP2833x_Sci.obj" "DSP2833x_common\source\DSP2833x_Spi.obj" "DSP2833x_common\source\DSP2833x_SysCtrl.obj" "DSP2833x_common\source\DSP2833x_Xintf.obj" "DSP2833x_common\source\DSP2833x_usDelay.obj" "DSP2833x_common\source\GPS.obj" "DSP2833x_common\source\SBUS.obj" 
+	-$(RM) "DSP2833x_common\source\DSP2833x_Sci.obj" "DSP2833x_common\source\DSP2833x_Spi.obj" "DSP2833x_common\source\DSP2833x_SysCtrl.obj" "DSP2833x_common\source\DSP2833x_Xintf.obj" "DSP2833x_common\source\DSP2833x_usDelay.obj" "DSP2833x_common\source\GPS.obj" "DSP2833x_common\source\SBUS.obj" "DSP2833x_common\source\SD_SPI_Erase.obj" "DSP2833x_common\source\SD_SPI_Initialization.obj" "DSP2833x_common\source\SD_SPI_Read.obj" "DSP2833x_common\source\SD_SPI_Registers.obj" "DSP2833x_common\source\SD_SPI_Transmission.obj" "DSP2833x_common\source\SD_SPI_Write.obj" "DSP2833x_common\source\disk_sd.obj" "DSP2833x_common\source\diskio.obj" "DSP2833x_common\source\ff.obj" 
 	-$(RM) "DSP2833x_common\source\DSP2833x_ADC_cal.pp" "DSP2833x_common\source\DSP2833x_CSMPasswords.pp" "DSP2833x_common\source\DSP2833x_CodeStartBranch.pp" "DSP2833x_common\source\DSP2833x_DBGIER.pp" "DSP2833x_common\source\DSP2833x_DisInt.pp" "DSP2833x_common\source\DSP2833x_usDelay.pp" 
 	-@echo 'Finished clean'
 	-@echo ' '

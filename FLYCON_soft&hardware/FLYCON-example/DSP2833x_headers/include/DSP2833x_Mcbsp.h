@@ -710,6 +710,7 @@ void init_mcbspb_spi();
 void init_mcbsp_spi();
 void Mcbspb_SPI_TX(Uint16 a);
 Uint16 Mcbspb_SPI_RX(void);
+void Mcbspa_SPI_TX(Uint16 a);
 
 #ifdef __cplusplus
 }
